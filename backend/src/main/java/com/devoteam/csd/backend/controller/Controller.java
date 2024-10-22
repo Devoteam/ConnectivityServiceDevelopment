@@ -1,11 +1,3 @@
-/*
- * (c) 2024 Copyright Devoteam GmbH
- *
- * Project:
- * AAMP - Azure App Management Portal,
- * Mercedes Benz AG
- */
-
 package com.devoteam.csd.backend.controller;
 
 import java.util.ArrayList;
