@@ -2,6 +2,7 @@ package com.devoteam.csd.backend.controller;
 
 import com.devoteam.csd.backend.entity.ProductEntity;
 import com.devoteam.csd.backend.service.ProductService;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -40,12 +41,26 @@ public class Controller {
   /**
    * Gets a list of all products.
    *
-   * @return
+   * @return A list of all products.
    */
   @GetMapping("products")
-  public ResponseEntity<List<ProductEntity>> products() {
+  public ResponseEntity<List<ProductEntity>> getProducts() {
     log.debug("Incoming GET /products Request");
     List<ProductEntity> response = productService.getProducts();
+    log.debug("Returning with Response: " + response);
+    log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
+    return ResponseEntity.ok(response);
+  }
+
+  /**
+   * Gets a list of all products.
+   *
+   * @return A list of all products.
+   */
+  @GetMapping("products/image/{id}")
+  public ResponseEntity<Blob> getProductImage(@PathVariable(name = "id", required = true) Long id) {
+    log.debug("Incoming GET /products Request");
+    Blob response = productService.getProductImage(id);
     log.debug("Returning with Response: " + response);
     log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
     return ResponseEntity.ok(response);

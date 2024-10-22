@@ -2,7 +2,9 @@ package com.devoteam.csd.backend.service;
 
 import com.devoteam.csd.backend.entity.ProductEntity;
 import com.devoteam.csd.backend.repository.ProductRepository;
+import java.sql.Blob;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,14 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public List<ProductEntity> getProducts() {
     return productRepository.findAll();
+  }
+
+  @Override
+  public Blob getProductImage(long id) {
+    Optional<ProductEntity> productEntity = productRepository.findById(id);
+    if (productEntity.isPresent()) {
+      return productEntity.get().getImage();
+    }
+    return null;
   }
 }
