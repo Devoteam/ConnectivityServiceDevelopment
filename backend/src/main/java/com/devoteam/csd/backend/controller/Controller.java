@@ -2,12 +2,15 @@ package com.devoteam.csd.backend.controller;
 
 import com.devoteam.csd.backend.entity.ProductEntity;
 import com.devoteam.csd.backend.service.ProductService;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,14 +56,18 @@ public class Controller {
   }
 
   /**
-   * Gets a list of all products.
+   * Gets a paricular product image.
    *
    * @return A list of all products.
    */
-  @GetMapping("products/image/{id}")
-  public ResponseEntity<Blob> getProductImage(@PathVariable(name = "id", required = true) Long id) {
+  @GetMapping(value = "products/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+  public ResponseEntity<byte[]> getProductImage(@PathVariable(name = "id", required = true) Long id) {
     log.debug("Incoming GET /products Request");
-    Blob response = productService.getProductImage(id);
+    byte[] response = productService.getProductImage(id);
+    if (response == null) {
+      System.out.println("Response is null");
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
     log.debug("Returning with Response: " + response);
     log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
     return ResponseEntity.ok(response);

@@ -29,7 +29,7 @@ public class ProductEntity {
   private String description;
 
   @Lob
-    private Blob image;
+  private Blob image;
 
   public String getCategory() {
     return category;
