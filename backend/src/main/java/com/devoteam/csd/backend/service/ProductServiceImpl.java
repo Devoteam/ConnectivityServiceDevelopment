@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<ProductEntity> getProducts() {
-    return productRepository.findAll();
+    return productRepository.findAllProductsNoImage();
   }
 
   @Override
