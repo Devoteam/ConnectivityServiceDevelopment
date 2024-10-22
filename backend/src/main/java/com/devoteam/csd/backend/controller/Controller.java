@@ -1,5 +1,7 @@
 package com.devoteam.csd.backend.controller;
 
+import com.devoteam.csd.backend.entity.ProductEntity;
+import com.devoteam.csd.backend.service.ProductService;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -16,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Controller {
 
+  @Autowired
+  private ProductService productService;
+
   Logger log = LoggerFactory.getLogger(Controller.class);
 
-    /**
+  /**
    * Returns OK if the controller is alive.
    *
    * @return ResponseEntity String OK Status 200
@@ -27,6 +32,20 @@ public class Controller {
   public ResponseEntity<String> alive() {
     log.debug("Incoming GET /alive Request");
     String response = "OK";
+    log.debug("Returning with Response: " + response);
+    log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
+    return ResponseEntity.ok(response);
+  }
+
+  /**
+   * Gets a list of all products.
+   *
+   * @return
+   */
+  @GetMapping("products")
+  public ResponseEntity<List<ProductEntity>> products() {
+    log.debug("Incoming GET /products Request");
+    List<ProductEntity> response = productService.getProducts();
     log.debug("Returning with Response: " + response);
     log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
