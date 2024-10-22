@@ -20,7 +20,6 @@ public class ProductEntity {
   @Column(name = "id")
   private Long id;
 
-  private int productId;
   private String category;
 
   @Column(name = "name", length = 2000)
@@ -31,14 +30,6 @@ public class ProductEntity {
 
   @Lob
     private Blob image;
-
-  public int getProductId() {
-    return productId;
-  }
-
-  public void setProductId(int productId) {
-    this.productId = productId;
-  }
 
   public String getCategory() {
     return category;
@@ -70,5 +61,13 @@ public class ProductEntity {
 
   public void setImage(Blob image) {
     this.image = image;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 }
