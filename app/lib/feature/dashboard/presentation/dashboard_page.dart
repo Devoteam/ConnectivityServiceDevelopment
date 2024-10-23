@@ -1,4 +1,4 @@
-import 'package:connect_service_app/common/presentation/dashboard_card.dart';
+import 'package:connect_service_app/feature/dashboard/presentation/widget/dashboard_card.dart';
 import 'package:connect_service_app/feature/dashboard/presentation/widget/dashboard_nav_drawer.dart';
 import 'package:flutter/material.dart';
 
