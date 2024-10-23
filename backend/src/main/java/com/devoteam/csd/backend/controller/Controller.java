@@ -44,7 +44,7 @@ public class Controller {
   }
 
   /**
-   * Gets a list of all products sorted by product name ascending.
+   * Gets a list of all products sorted by product id ascending.
    *
    * @return A list of all products.
    */

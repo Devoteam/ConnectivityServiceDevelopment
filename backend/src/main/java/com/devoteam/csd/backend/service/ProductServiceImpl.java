@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
   Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 
   /**
-   * Gets a list of products sorted by product name ascending.
+   * Gets a list of products sorted by product id ascending.
    * The products do not contain the product image in order to reduce
    * amount of data.
    *
