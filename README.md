@@ -4,6 +4,14 @@ The repository for the Skoda tender Connectivity Service Development
 
 ## Backend
 
+### Environment Variables
+
+For database access these environment variables have to be set:
+
+- CSD_DB_URL: Contains the MySQL connect URL, e.g. "jdbc:mysql://localhost:3306/csd"
+- CSD_DB_USER: The database user id
+- CSD_DB_PASSWORD: The database user's password
+
 ### Working with the backend container image
 
 #### Prerequisites
