@@ -114,3 +114,18 @@ curl http://localhost:8080/products/image/{id}
 ```
 
 This end point retrieves the PNG image for a given product id (HTTP 200). If there is no image or the product does not exist HTTP 404 is returned.
+
+### Database
+
+The database is named "csd" and contains one products table:
+
+```shell
+CREATE TABLE `product` (
+  `id`          bigint NOT NULL,
+  `category`    varchar(255) DEFAULT NULL,
+  `description` varchar(10000) DEFAULT NULL,
+  `image`       longblob,
+  `name`        varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+```
