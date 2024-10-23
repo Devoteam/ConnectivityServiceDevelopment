@@ -1,5 +1,6 @@
-import 'package:connect_service_app/common/presentation/device_specific_ui.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../common/presentation/device_specific_ui.dart';
 
 class DashboardCard extends StatelessWidget {
   const DashboardCard({super.key});

@@ -1,7 +1,7 @@
-import 'package:connect_service_app/feature/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:injectable/injectable.dart';
 
 import '../entity/dashboard_entry.dart';
+import '../repository/dashboard_repository.dart';
 
 @lazySingleton
 class DashboardService {

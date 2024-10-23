@@ -1,5 +1,6 @@
-import 'package:connect_service_app/feature/dashboard/domain/entity/dashboard_entry.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/entity/dashboard_entry.dart';
 
 part 'dashboard_state.freezed.dart';
 

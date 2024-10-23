@@ -1,10 +1,10 @@
-import 'package:connect_service_app/feature/dashboard/presentation/cubit/dashboard_cubit.dart';
-import 'package:connect_service_app/feature/dashboard/presentation/widget/dashboard_card.dart';
-import 'package:connect_service_app/feature/dashboard/presentation/widget/dashboard_content_with_nav_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubit/dashboard_cubit.dart';
 import 'cubit/dashboard_state.dart';
+import 'widget/dashboard_card.dart';
+import 'widget/dashboard_content_with_nav_drawer.dart';
 
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({

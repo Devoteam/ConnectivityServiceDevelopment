@@ -1,11 +1,11 @@
-import 'package:connect_service_app/feature/dashboard/data/mapper/dashboard_entry_mapper.dart';
-import 'package:connect_service_app/feature/dashboard/domain/entity/dashboard_entry.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../common/data/json_mapper.dart';
 import '../../../../constants.dart';
 import '../../../../core/http_client/http_client.dart';
+import '../../domain/entity/dashboard_entry.dart';
 import '../../domain/repository/dashboard_repository.dart';
+import '../mapper/dashboard_entry_mapper.dart';
 import '../model/dashboard_entry_model.dart';
 
 @LazySingleton(as: DashboardRepository)

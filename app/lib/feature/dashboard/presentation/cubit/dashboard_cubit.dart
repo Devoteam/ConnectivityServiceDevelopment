@@ -1,7 +1,8 @@
-import 'package:connect_service_app/feature/dashboard/domain/service/dashboard_service.dart';
-import 'package:connect_service_app/feature/dashboard/presentation/cubit/dashboard_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/service/dashboard_service.dart';
+import 'dashboard_state.dart';
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
