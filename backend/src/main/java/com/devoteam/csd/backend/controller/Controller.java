@@ -39,8 +39,7 @@ public class Controller {
   public ResponseEntity<String> alive() {
     log.debug("Incoming GET /alive Request");
     String response = "OK";
-    log.debug("Returning with Response: " + response);
-    log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
+    log.trace("ResponseEntity is: {}", ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
   }
 
@@ -53,13 +52,13 @@ public class Controller {
   public ResponseEntity<List<ProductEntity>> getProducts() {
     log.debug("Incoming GET /products Request");
     List<ProductEntity> response = productService.getProducts();
-    log.debug("Returning with Response: " + response);
-    log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
+    log.debug("Returned product entities: {}", response.size());
+    log.debug("ResponseEntity is: {}", ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
   }
 
   /**
-   * Gets a paricular product image.
+   * Gets a particular product PNG image for a given product id.
    *
    * @return A list of all products.
    */
@@ -68,11 +67,11 @@ public class Controller {
     log.debug("Incoming GET /products Request");
     byte[] response = productService.getProductImage(id);
     if (response == null) {
-      System.out.println("Response is null");
+      log.debug("No image found for product id: {}", id);
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
-    log.debug("Returning with Response: " + response);
-    log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
+    log.debug("Image found for id: {}", id);
+    log.debug("ResponseEntity is: {}", ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
   }
 }

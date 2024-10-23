@@ -91,11 +91,19 @@
 			<version>2.24.9</version>
 		</dependency>
 
-		<!-- AWS Secrets Manager -->
+		<!-- for Cloud Watch logging -->
 		<dependency>
-			<groupId>io.awspring.cloud</groupId>
-			<artifactId>spring-cloud-starter-aws-secrets-manager-config</artifactId>
-			<version>2.4.4</version>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-logs</artifactId>
+			<version>1.12.777</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
 		</dependency>
 	</dependencies>
 
