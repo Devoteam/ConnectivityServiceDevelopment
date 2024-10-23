@@ -74,6 +74,7 @@ The backend offers 3 end points as described below.
 #### Check Liveness
 
 ```shell
+GET
 curl http://localhost:8080/alive
 ```
 Returns "OK" and HTTP 200 if the service is up and running.
@@ -81,6 +82,7 @@ Returns "OK" and HTTP 200 if the service is up and running.
 #### Get Product List
 
 ```shell
+GET
 curl http://localhost:8080/products
 ```
 Gives the list of products stored within the database as JSON without the image set (HTTP 200).
@@ -110,6 +112,7 @@ The result looks like this:
 #### Get Product Image
 
 ```shell
+GET
 curl http://localhost:8080/products/image/{id}
 ```
 
