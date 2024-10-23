@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * This class contains all end points for this application.
+ */
 @RestController
 @RequestMapping("/")
 public class Controller {
@@ -42,7 +45,7 @@ public class Controller {
   }
 
   /**
-   * Gets a list of all products.
+   * Gets a list of all products sorted by product name ascending.
    *
    * @return A list of all products.
    */
