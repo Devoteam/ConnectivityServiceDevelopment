@@ -29,9 +29,6 @@ dependencies:
 
   cupertino_icons: ^1.0.8
 
-  #Navigation
-  go_router: 14.2.2
-
   #Device Info
   device_info_plus: ^11.1.0
 
