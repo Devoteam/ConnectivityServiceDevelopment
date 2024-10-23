@@ -34,7 +34,7 @@ public class Controller {
    */
   @GetMapping("alive")
   public ResponseEntity<String> alive() {
-    log.debug("Incoming GET /alive Request");
+    log.info("Incoming GET /alive Request");
     String response = "OK";
     log.debug("Returning with Response: " + response);
     log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
@@ -48,7 +48,7 @@ public class Controller {
    */
   @GetMapping("products")
   public ResponseEntity<List<ProductEntity>> getProducts() {
-    log.debug("Incoming GET /products Request");
+    log.info("Incoming GET /products Request");
     List<ProductEntity> response = productService.getProducts();
     log.debug("Returning with Response: " + response);
     log.trace("ResponseEntity is: " + ResponseEntity.ok(response));
@@ -62,7 +62,7 @@ public class Controller {
    */
   @GetMapping(value = "products/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
   public ResponseEntity<byte[]> getProductImage(@PathVariable(name = "id", required = true) Long id) {
-    log.debug("Incoming GET /products Request");
+    log.info("Incoming GET /products Request");
     byte[] response = productService.getProductImage(id);
     if (response == null) {
       System.out.println("Response is null");
