@@ -66,3 +66,42 @@ curl http://localhost:8080/alive
 
 OK%
 ```
+
+### End Points
+
+The backend offers 3 end points as described below.
+
+#### Check Liveness
+
+```shell
+curl http://localhost:8080/alive
+```
+Returns "OK" if the service is up and running.
+
+#### Get Product List
+
+```shell
+curl http://localhost:8080/products
+```
+Gives the list of products stored within the database as JSON without the image set. The sort order is by product id to be able to enforce a particular order, e.g. by importance. In future there could be an extra id for this.
+
+The result looks like this:
+```shell
+[
+    {
+        "id": 3,
+        "category": "Škoda Connect Dienste",
+        "name": "Care Connect - Fernzugriff ",
+        "description": "Um noch mehr Komfort zu genießen ist Care Connect - Remote Access genau das Richtige. Ihre persönlichen Assistenten ...",
+        "image": null
+    },
+    {
+        "id": 4,
+        "category": "Škoda Connect Dienste",
+        "name": "Infotainment Online",
+        "description": "Mit den Infotainment Online Diensten von Škoda Connect sind Sie unterwegs besser informiert. Suchen Sie nach spannenden Zielen ...",
+        "image": null
+    }
+...
+]
+```
