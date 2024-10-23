@@ -12,6 +12,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
    * @return a list of products, returning image column as NULL
    */
   @Query(value = "SELECT NEW ProductEntity(pe.id,pe.category,pe.name,pe.description) FROM ProductEntity pe "
-                  + "ORDER BY pe.name ASC ")
+                  + "ORDER BY pe.id ASC ")
   List<ProductEntity> findAllProductsNoImage();
 }
