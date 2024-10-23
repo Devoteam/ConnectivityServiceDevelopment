@@ -125,7 +125,8 @@ jobs:
         run: |
           IMAGE_TAG=latest
           IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG"
-          docker build -t $IMAGE_URI ../../backend
+          pwd
+          docker build -t $IMAGE_URI ./backend
           echo "Built Docker image: $IMAGE_URI"
 
       # Step 4: Push Docker image to Amazon ECR
