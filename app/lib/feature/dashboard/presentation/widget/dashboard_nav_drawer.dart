@@ -1,23 +1,17 @@
-import 'package:connect_service_app/common/presentation/device_specific_ui.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:connect_service_app/navigation/app_navigation_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ShellNavigationScaffold extends StatefulWidget {
+import '../../../../common/presentation/device_specific_ui.dart';
+
+class DashBoardNavDrawer extends StatelessWidget {
+  final Function(int) onNacDrawerEntryClicked;
   final Widget child;
 
-  const ShellNavigationScaffold({
+  const DashBoardNavDrawer({
     super.key,
+    required this.onNacDrawerEntryClicked,
     required this.child,
   });
-
-  @override
-  State<ShellNavigationScaffold> createState() => _ShellNavigationScaffoldState();
-}
-
-class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +42,7 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
         padding: const EdgeInsets.symmetric(
           horizontal: 24,
         ),
-        child: widget.child,
+        child: child,
       ),
     );
   }
@@ -89,7 +83,7 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                   ),
-                  child: widget.child,
+                  child: child,
                 ),
               ),
             ],
@@ -114,14 +108,14 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.careConnectRemoteAccess),
-          onTap: () => _changeTab(0),
+          onTap: () => onNacDrawerEntryClicked(0),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.infotainmentOnline),
-          onTap: () => _changeTab(1),
+          onTap: () => onNacDrawerEntryClicked(1),
         ),
       ),
       ListTile(
@@ -137,21 +131,21 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.traffication),
-          onTap: () => _changeTab(2),
+          onTap: () => onNacDrawerEntryClicked(2),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.payToPark),
-          onTap: () => _changeTab(3),
+          onTap: () => onNacDrawerEntryClicked(3),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.payToFuel),
-          onTap: () => _changeTab(4),
+          onTap: () => onNacDrawerEntryClicked(4),
         ),
       ),
       ListTile(
@@ -169,18 +163,9 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
         padding: const EdgeInsets.only(left: 32.0),
         child: ListTile(
           title: Text(AppLocalizations.of(context)!.ambientLighting),
-          onTap: () => _changeTab(5),
+          onTap: () => onNacDrawerEntryClicked(5),
         ),
       ),
     ];
-  }
-
-  void _changeTab(int index) {
-    context.go(
-      index.routeBasedOnIndex,
-    );
-    setState(() {
-      currentIndex = index;
-    });
   }
 }
