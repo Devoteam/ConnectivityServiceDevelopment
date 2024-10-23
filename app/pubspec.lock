@@ -259,6 +259,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_aaos:
+    dependency: "direct main"
+    description:
+      name: flutter_aaos
+      sha256: "3ae7b163c6e1921ac61249ad3d815d1ddbba13d3a7d1d1e30497df6c180fcc48"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   flutter_bloc:
     dependency: "direct main"
     description:

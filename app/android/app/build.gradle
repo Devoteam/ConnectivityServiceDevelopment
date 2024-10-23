@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    useLibrary 'android.car'
+
     namespace = "com.devoteam.connect_service_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -24,7 +26,7 @@ android {
         applicationId = "com.devoteam.connect_service_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 29
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -41,4 +43,10 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation "androidx.car.app:app:1.7.0-beta02"
+    implementation "androidx.car.app:app-automotive:1.7.0-beta02"
+    testImplementation "androidx.car.app:app-testing:1.7.0-beta02"
 }
