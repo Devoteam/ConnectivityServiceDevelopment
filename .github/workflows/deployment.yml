@@ -135,7 +135,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: backend-live-task-def.json
-          service: ${{ secrets.ECS_SERVICE }}
+          service: ${{ secrets.ECS_SERVICE_LIVE }}
           cluster: ${{ secrets.ECS_CLUSTER }}
           region: ${{ secrets.AWS_REGION }}
           wait-for-service-stability: true
