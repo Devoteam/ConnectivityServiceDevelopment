@@ -1,3 +1,12 @@
 {
-  "appTitle": "Connect Service App"
+  "appTitle": "Connect Service App",
+  "skodaConnectServicesSectionTitle": "Skode Connect services",
+  "careConnectRemoteAccess": "Care Connect - Remote Access",
+  "infotainmentOnline": "Infotainment Online",
+  "infotainmentApps": "Infotainment Apps",
+  "traffication": "Traffication",
+  "payToPark": "PayToPark",
+  "payToFuel": "Pay To Fuel",
+  "functionsOnDemand": "Functions on Demand",
+  "ambientLighting": "Ambient Lighting"
 }
