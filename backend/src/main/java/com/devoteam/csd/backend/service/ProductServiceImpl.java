@@ -20,11 +20,22 @@ public class ProductServiceImpl implements ProductService {
 
   Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 
+  /**
+   * Gets a list of products sorted by product name ascending.
+   *
+   * @return the list of product entities
+   */
   @Override
   public List<ProductEntity> getProducts() {
     return productRepository.findAllProductsNoImage();
   }
 
+  /**
+   * Gets the product image from database by the product id.
+   *
+   * @param id the product id
+   * @return the product image as byte array
+   */
   @Override
   public byte[] getProductImage(long id) {
     Optional<ProductEntity> productEntity = productRepository.findById(id);
@@ -32,10 +43,7 @@ public class ProductServiceImpl implements ProductService {
       try {
         System.out.println("ProductEntity was found.");
         System.out.println("Content length: " + productEntity.get().getImage().length());
-        byte[] imageBytes = productEntity.get().getImage().getBytes(1, (int) productEntity.get().getImage().length());
-        // String base64Image =  Base64.getEncoder().encodeToString(imageBytes);
-        // return base64Image.getBytes();
-        return imageBytes;
+        return productEntity.get().getImage().getBytes(1, (int) productEntity.get().getImage().length());
       } catch (Exception e) {
         System.out.println(e.getMessage());
       }

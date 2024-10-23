@@ -10,6 +10,11 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.sql.Blob;
 
+/**
+ * This is the product entity stored in database.
+ *
+ * @uthor volker.schneider@devoteam.com
+ */
 @Entity
 @Table(name = "product")
 public class ProductEntity {
@@ -34,6 +39,14 @@ public class ProductEntity {
   public ProductEntity() {
   }
 
+  /**
+   * Special constructor for JPA custom query for omitting the product image.
+   *
+   * @param id the product id
+   * @param category the product category
+   * @param name te product name
+   * @param description the product description
+   */
   public ProductEntity(Long id, String category, String name, String description) {
     this.id = id;
     this.category = category;
