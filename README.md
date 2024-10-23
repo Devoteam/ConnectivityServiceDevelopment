@@ -107,7 +107,7 @@ The result looks like this:
 ]
 ```
 
-### Get Product Image
+#### Get Product Image
 
 ```shell
 curl http://localhost:8080/products/image/{id}
