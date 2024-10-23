@@ -37,7 +37,7 @@ public class Controller {
    */
   @GetMapping("alive")
   public ResponseEntity<String> alive() {
-    log.debug("Incoming GET /alive Request");
+    log.info("Incoming GET /alive Request");
     String response = "OK";
     log.trace("ResponseEntity is: {}", ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
@@ -50,7 +50,7 @@ public class Controller {
    */
   @GetMapping("products")
   public ResponseEntity<List<ProductEntity>> getProducts() {
-    log.debug("Incoming GET /products Request");
+    log.info("Incoming GET /products Request");
     List<ProductEntity> response = productService.getProducts();
     log.debug("Returned product entities: {}", response.size());
     log.debug("ResponseEntity is: {}", ResponseEntity.ok(response));
@@ -64,7 +64,7 @@ public class Controller {
    */
   @GetMapping(value = "products/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
   public ResponseEntity<byte[]> getProductImage(@PathVariable(name = "id", required = true) Long id) {
-    log.debug("Incoming GET /products Request");
+    log.info("Incoming GET /products Request");
     byte[] response = productService.getProductImage(id);
     if (response == null) {
       log.debug("No image found for product id: {}", id);
