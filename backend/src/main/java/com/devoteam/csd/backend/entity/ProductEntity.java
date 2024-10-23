@@ -31,6 +31,9 @@ public class ProductEntity {
   @Lob
   private Blob image;
 
+  public ProductEntity() {
+  }
+
   public ProductEntity(Long id, String category, String name, String description) {
     this.id = id;
     this.category = category;
