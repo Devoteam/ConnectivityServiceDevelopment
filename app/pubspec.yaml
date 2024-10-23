@@ -32,11 +32,26 @@ dependencies:
   #Device Info
   device_info_plus: ^11.1.0
 
+  #Architecture
+  flutter_bloc: 8.1.6
+  freezed: 2.5.2
+  freezed_annotation: 2.4.4
+
+  #Networking
+  dio: 5.5.0+1
+
+  #Service Locator
+  get_it: 7.7.0
+  injectable: 2.4.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^4.0.0
+  build_runner: 2.4.11
+  injectable_generator: 2.6.2
+  json_serializable: 6.8.0
 
 flutter:
   uses-material-design: true

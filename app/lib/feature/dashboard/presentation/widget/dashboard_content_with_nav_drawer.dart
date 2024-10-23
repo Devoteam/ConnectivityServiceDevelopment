@@ -3,11 +3,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/presentation/device_specific_ui.dart';
 
-class DashBoardNavDrawer extends StatelessWidget {
+class DashboardContentWithNavDrawer extends StatelessWidget {
   final Function(int) onNacDrawerEntryClicked;
   final Widget child;
 
-  const DashBoardNavDrawer({
+  const DashboardContentWithNavDrawer({
     super.key,
     required this.onNacDrawerEntryClicked,
     required this.child,
