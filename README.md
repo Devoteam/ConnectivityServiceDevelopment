@@ -76,14 +76,15 @@ The backend offers 3 end points as described below.
 ```shell
 curl http://localhost:8080/alive
 ```
-Returns "OK" if the service is up and running.
+Returns "OK" and HTTP 200 if the service is up and running.
 
 #### Get Product List
 
 ```shell
 curl http://localhost:8080/products
 ```
-Gives the list of products stored within the database as JSON without the image set. The sort order is by product id to be able to enforce a particular order, e.g. by importance. In future there could be an extra id for this.
+Gives the list of products stored within the database as JSON without the image set (HTTP 200).
+The sort order is by product id to be able to enforce a particular order, e.g. by importance. In future there could be an extra id for this.
 
 The result looks like this:
 ```shell
@@ -105,3 +106,11 @@ The result looks like this:
 ...
 ]
 ```
+
+### Get Product Image
+
+```shell
+curl http://localhost:8080/products/image/{id}
+```
+
+This end point retrieves the PNG image for a given product id (HTTP 200). If there is no image or the product does not exist HTTP 404 is returned.
