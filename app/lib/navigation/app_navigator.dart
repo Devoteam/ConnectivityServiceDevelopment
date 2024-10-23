@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../common/presentation/shell_navigation_scaffold.dart';
 import '../common/presentation/under_construction_page.dart';
+import '../feature/dashboard/presentation/dashboard_page.dart';
 
 class AppNavigator {
   static final AppNavigator _instance = AppNavigator._internal();
@@ -45,7 +46,7 @@ class AppNavigator {
               path: careConnectRemoteAccess,
               pageBuilder: (context, state) {
                 return _getPage(
-                  child: const UnderConstructionPage(),
+                  child: const DashBoardPage(),
                   state: state,
                 );
               },

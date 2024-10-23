@@ -85,23 +85,11 @@ class _ShellNavigationScaffoldState extends State<ShellNavigationScaffold> {
               ),
               Expanded(
                 flex: 6,
-                child: Flex(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  direction: Axis.horizontal,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: widget.child,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                  ),
+                  child: widget.child,
                 ),
               ),
             ],
