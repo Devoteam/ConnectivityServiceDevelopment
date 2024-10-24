@@ -121,7 +121,9 @@ jobs:
 
       # Step 4: Get Flutter dependencies
       - name: Install Flutter dependencies
-        run: flutter pub get
+        run: |
+          cd ./app
+          flutter pub get
 
       # Step 5: Run Flutter tests (unit and widget tests)
       - name: Run Flutter tests
