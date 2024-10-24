@@ -16,15 +16,15 @@ class DashboardCard extends StatelessWidget {
     return DeviceSpecificUI(
       mobileUi: _buildCard(
         isMobile: true,
-        imageSize: const Size(72, 48),
+        imageSize: const Size(90, 60),
         imagePadding: const EdgeInsets.only(left: 20),
-        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
+        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
       ),
       automotiveUi: _buildCard(
         isMobile: false,
-        imageSize: const Size(256, 128),
-        imagePadding: const EdgeInsets.only(left: 72),
-        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
+        imageSize: const Size(256, 160),
+        imagePadding: const EdgeInsets.only(left: 8),
+        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 0),
       ),
     );
   }
@@ -50,9 +50,11 @@ class DashboardCard extends StatelessWidget {
         Row(
           children: [
             _buildImage(imageSize),
-            Padding(
-              padding: imagePadding,
-              child: _buildTitle(),
+            Flexible(
+              child: Padding(
+                padding: imagePadding,
+                child: _buildTitle(),
+              ),
             ),
           ],
         ),
@@ -67,7 +69,10 @@ class DashboardCard extends StatelessWidget {
   Widget _buildAutomotiveContent(Size imageSize, EdgeInsets imagePadding) {
     return Row(
       children: [
-        _buildImage(imageSize),
+        Padding(
+          padding: imagePadding,
+          child: _buildImage(imageSize),
+        ),
         Expanded(
           child: Padding(
             padding: imagePadding,
@@ -110,6 +115,8 @@ class DashboardCard extends StatelessWidget {
     return Text(
       dashboardEntry.name,
       style: TextStyle(fontWeight: FontWeight.bold),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
     );
   }
 

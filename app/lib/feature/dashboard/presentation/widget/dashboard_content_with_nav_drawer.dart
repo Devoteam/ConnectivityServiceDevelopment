@@ -102,7 +102,7 @@ class DashboardContentWithNavDrawer extends StatelessWidget {
     for (var navDrawerEntry in navDrawerEntries) {
       navItems.add(_buildCategoryHeader(navDrawerEntry.category));
       for (var navDrawerEntryName in navDrawerEntry.names) {
-        navItems.add(_buildNavDrawerEntry(navDrawerEntryName, navItemIndex));
+        navItems.add(_buildNavDrawerEntry(context, navDrawerEntryName, navItemIndex));
         navItemIndex++;
       }
     }
@@ -122,12 +122,18 @@ class DashboardContentWithNavDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildNavDrawerEntry(String title, int index) {
+  Widget _buildNavDrawerEntry(BuildContext context, String title, int index) {
     return Padding(
-      padding: const EdgeInsets.only(left: 32.0),
+      padding: const EdgeInsets.only(left: 40.0),
       child: ListTile(
         title: Text(title),
-        onTap: () => onNacDrawerEntryClicked(index),
+        onTap: () {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
+
+          onNacDrawerEntryClicked(index);
+        },
       ),
     );
   }
