@@ -24,7 +24,7 @@ class DashboardCard extends StatelessWidget {
         isMobile: false,
         imageSize: const Size(256, 160),
         imagePadding: const EdgeInsets.only(left: 8),
-        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
       ),
     );
   }
@@ -36,6 +36,7 @@ class DashboardCard extends StatelessWidget {
     required EdgeInsets contentPadding,
   }) {
     return Card(
+      elevation: 8,
       child: Padding(
         padding: contentPadding,
         child:
@@ -68,11 +69,9 @@ class DashboardCard extends StatelessWidget {
 
   Widget _buildAutomotiveContent(Size imageSize, EdgeInsets imagePadding) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: imagePadding,
-          child: _buildImage(imageSize),
-        ),
+        _buildImage(imageSize),
         Expanded(
           child: Padding(
             padding: imagePadding,
@@ -88,7 +87,7 @@ class DashboardCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 _buildDescription(),
-                const SizedBox(height: 12),
+                const SizedBox(height: 48),
                 Align(
                   alignment: Alignment.centerRight,
                   child: _buildLicenseInfo(),

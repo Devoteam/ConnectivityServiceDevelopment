@@ -64,7 +64,7 @@ class DashboardContentWithNavDrawer extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Drawer(
-                  elevation: 32,
+                  elevation: 8,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(
