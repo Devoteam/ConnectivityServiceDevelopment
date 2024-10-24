@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'cubit/dashboard_cubit.dart';
 import 'cubit/dashboard_state.dart';
@@ -34,9 +35,27 @@ class _DashBoardPageState extends State<DashBoardPage> {
             child: CircularProgressIndicator(),
           ),
         ),
-        dashboardError: () => const Scaffold(
+        dashboardError: () => Scaffold(
           body: Center(
-            child: Text('oops'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.errorOnLoadingProducts,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                ElevatedButton(
+                  onPressed: () => BlocProvider.of<DashboardCubit>(context).init(),
+                  child: Text(
+                    AppLocalizations.of(context)!.retry,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         dashboardContent: (

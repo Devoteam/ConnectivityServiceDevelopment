@@ -47,6 +47,7 @@ void main() {
       },
       act: (cubit) async => await cubit.init(),
       expect: () => [
+        DashboardLoading(),
         DashboardContent(navDrawerEntries, dashboardEntries),
       ],
     );
@@ -59,6 +60,7 @@ void main() {
       },
       act: (cubit) async =>  await cubit.init(),
       expect: () => [
+        DashboardLoading(),
         const DashboardError(),
       ],
     );

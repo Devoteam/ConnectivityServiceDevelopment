@@ -18,6 +18,10 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   Future<void> init() async {
     try {
+      emit(
+        const DashboardLoading(),
+      );
+
       final products = await _dashboardService.readProducts();
       final navDrawerEntries = transformToNavDrawerEntries(products);
 
