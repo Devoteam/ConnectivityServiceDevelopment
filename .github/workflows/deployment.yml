@@ -179,7 +179,17 @@ jobs:
           IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG"
           docker push $IMAGE_URI
 
-      # Step 5: Update ECS service
+      # Step 5: Update ECS staging service
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ./.github/workflows/backend-task-def.json
+          service: ${{ secrets.ECS_SERVICE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          region: ${{ secrets.AWS_REGION }}
+          wait-for-service-stability: true
+
+      # Step 6: Update ECS live service
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
@@ -188,3 +198,5 @@ jobs:
           cluster: ${{ secrets.ECS_CLUSTER }}
           region: ${{ secrets.AWS_REGION }}
           wait-for-service-stability: true
+
+      
