@@ -11,6 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,5 +83,31 @@ class ControllerTest {
 		MvcResult result = this.mvc.perform(get("/products")).andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
 		assertEquals("", content);
+	}
+
+	/**
+	 * Test for /products/image/{} endpoint returning a non-empty byte array
+	 * @throws Exception an exception
+	 */
+	@Test
+	void test_productsImage_ok() throws Exception {
+		// mock data
+		byte[] imageData = "Hello image!".getBytes();
+		when(productService.getProductImage(1L)).thenReturn(imageData);
+		MvcResult result = this.mvc.perform(get("/products/image/1")).andExpect(status().isOk()).andReturn();
+		assertNotNull(result);
+		String content = result.getResponse().getContentAsString();
+		assertEquals("Hello image!", content);
+	}
+
+	/**
+	 * Test for /products/image/{} endpoint returning no image
+	 * @throws Exception an exception
+	 */
+	@Test
+	void test_productsImage_noImage() throws Exception {
+		// mock data
+		when(productService.getProductImage(anyLong())).thenReturn(null);
+		this.mvc.perform(get("/products/image/1")).andExpect(status().isNotFound());
 	}
 }
