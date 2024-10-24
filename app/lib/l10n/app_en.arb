@@ -1,0 +1,5 @@
+{
+  "appTitle": "Connect Service App",
+  "errorOnLoadingProducts": "Das Laden der Produkte hat leider nicht geklappt",
+  "retry": "Wiederholen"
+}
