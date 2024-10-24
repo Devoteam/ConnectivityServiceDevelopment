@@ -20,22 +20,24 @@ mixin _$DashboardEntry {
   String get category => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DashboardEntryCopyWith<DashboardEntry> get copyWith => throw _privateConstructorUsedError;
+  $DashboardEntryCopyWith<DashboardEntry> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DashboardEntryCopyWith<$Res> {
-  factory $DashboardEntryCopyWith(DashboardEntry value, $Res Function(DashboardEntry) then) =
+  factory $DashboardEntryCopyWith(
+          DashboardEntry value, $Res Function(DashboardEntry) then) =
       _$DashboardEntryCopyWithImpl<$Res, DashboardEntry>;
   @useResult
-  $Res call({int id, String category, String name, String description, String? image});
+  $Res call({int id, String category, String name, String description});
 }
 
 /// @nodoc
-class _$DashboardEntryCopyWithImpl<$Res, $Val extends DashboardEntry> implements $DashboardEntryCopyWith<$Res> {
+class _$DashboardEntryCopyWithImpl<$Res, $Val extends DashboardEntry>
+    implements $DashboardEntryCopyWith<$Res> {
   _$DashboardEntryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -50,7 +52,6 @@ class _$DashboardEntryCopyWithImpl<$Res, $Val extends DashboardEntry> implements
     Object? category = null,
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,27 +70,27 @@ class _$DashboardEntryCopyWithImpl<$Res, $Val extends DashboardEntry> implements
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DashboardEntryImplCopyWith<$Res> implements $DashboardEntryCopyWith<$Res> {
-  factory _$$DashboardEntryImplCopyWith(_$DashboardEntryImpl value, $Res Function(_$DashboardEntryImpl) then) =
+abstract class _$$DashboardEntryImplCopyWith<$Res>
+    implements $DashboardEntryCopyWith<$Res> {
+  factory _$$DashboardEntryImplCopyWith(_$DashboardEntryImpl value,
+          $Res Function(_$DashboardEntryImpl) then) =
       __$$DashboardEntryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String category, String name, String description, String? image});
+  $Res call({int id, String category, String name, String description});
 }
 
 /// @nodoc
-class __$$DashboardEntryImplCopyWithImpl<$Res> extends _$DashboardEntryCopyWithImpl<$Res, _$DashboardEntryImpl>
+class __$$DashboardEntryImplCopyWithImpl<$Res>
+    extends _$DashboardEntryCopyWithImpl<$Res, _$DashboardEntryImpl>
     implements _$$DashboardEntryImplCopyWith<$Res> {
-  __$$DashboardEntryImplCopyWithImpl(_$DashboardEntryImpl _value, $Res Function(_$DashboardEntryImpl) _then)
+  __$$DashboardEntryImplCopyWithImpl(
+      _$DashboardEntryImpl _value, $Res Function(_$DashboardEntryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +100,6 @@ class __$$DashboardEntryImplCopyWithImpl<$Res> extends _$DashboardEntryCopyWithI
     Object? category = null,
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
   }) {
     return _then(_$DashboardEntryImpl(
       id: null == id
@@ -118,19 +118,19 @@ class __$$DashboardEntryImplCopyWithImpl<$Res> extends _$DashboardEntryCopyWithI
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DashboardEntryImpl implements _DashboardEntry {
+class _$DashboardEntryImpl extends _DashboardEntry {
   const _$DashboardEntryImpl(
-      {required this.id, required this.category, required this.name, required this.description, this.image});
+      {required this.id,
+      required this.category,
+      required this.name,
+      required this.description})
+      : super._();
 
   @override
   final int id;
@@ -140,12 +140,10 @@ class _$DashboardEntryImpl implements _DashboardEntry {
   final String name;
   @override
   final String description;
-  @override
-  final String? image;
 
   @override
   String toString() {
-    return 'DashboardEntry(id: $id, category: $category, name: $name, description: $description, image: $image)';
+    return 'DashboardEntry(id: $id, category: $category, name: $name, description: $description)';
   }
 
   @override
@@ -154,29 +152,31 @@ class _$DashboardEntryImpl implements _DashboardEntry {
         (other.runtimeType == runtimeType &&
             other is _$DashboardEntryImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.category, category) || other.category == category) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) || other.description == description) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, category, name, description, image);
+  int get hashCode => Object.hash(runtimeType, id, category, name, description);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DashboardEntryImplCopyWith<_$DashboardEntryImpl> get copyWith =>
-      __$$DashboardEntryImplCopyWithImpl<_$DashboardEntryImpl>(this, _$identity);
+      __$$DashboardEntryImplCopyWithImpl<_$DashboardEntryImpl>(
+          this, _$identity);
 }
 
-abstract class _DashboardEntry implements DashboardEntry {
+abstract class _DashboardEntry extends DashboardEntry {
   const factory _DashboardEntry(
       {required final int id,
       required final String category,
       required final String name,
-      required final String description,
-      final String? image}) = _$DashboardEntryImpl;
+      required final String description}) = _$DashboardEntryImpl;
+  const _DashboardEntry._() : super._();
 
   @override
   int get id;
@@ -187,8 +187,7 @@ abstract class _DashboardEntry implements DashboardEntry {
   @override
   String get description;
   @override
-  String? get image;
-  @override
   @JsonKey(ignore: true)
-  _$$DashboardEntryImplCopyWith<_$DashboardEntryImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$DashboardEntryImplCopyWith<_$DashboardEntryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/presentation/device_specific_ui.dart';
+import '../../domain/entity/dashboard_entry.dart';
 
 class DashboardCard extends StatelessWidget {
-  const DashboardCard({super.key});
+  final DashboardEntry dashboardEntry;
+
+  const DashboardCard({
+    super.key,
+    required this.dashboardEntry,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -94,13 +100,15 @@ class DashboardCard extends StatelessWidget {
     return SizedBox(
       width: size.width,
       height: size.height,
-      child: const Placeholder(),
+      child: Image.network(
+        dashboardEntry.imageUrl,
+      ),
     );
   }
 
   Widget _buildTitle() {
-    return const Text(
-      'Care Connect - RemoteAccess',
+    return Text(
+      dashboardEntry.name,
       style: TextStyle(fontWeight: FontWeight.bold),
     );
   }
@@ -130,8 +138,8 @@ class DashboardCard extends StatelessWidget {
   }
 
   Widget _buildDescription() {
-    return const Text(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean placerat tincidunt erat. Donec convallis, nulla sed maximus rutrum, est mi congue felis, nec rhoncus eros elit non leo. Aenean at molestie ante. Quisque ut ultrices nisl.',
+    return Text(
+      dashboardEntry.description,
     );
   }
 }

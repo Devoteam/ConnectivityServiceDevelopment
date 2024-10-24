@@ -28,15 +28,22 @@ mixin _$DashboardEntryModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DashboardEntryModelCopyWith<DashboardEntryModel> get copyWith => throw _privateConstructorUsedError;
+  $DashboardEntryModelCopyWith<DashboardEntryModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DashboardEntryModelCopyWith<$Res> {
-  factory $DashboardEntryModelCopyWith(DashboardEntryModel value, $Res Function(DashboardEntryModel) then) =
+  factory $DashboardEntryModelCopyWith(
+          DashboardEntryModel value, $Res Function(DashboardEntryModel) then) =
       _$DashboardEntryModelCopyWithImpl<$Res, DashboardEntryModel>;
   @useResult
-  $Res call({int id, String category, String name, String description, String? image});
+  $Res call(
+      {int id,
+      String category,
+      String name,
+      String description,
+      String? image});
 }
 
 /// @nodoc
@@ -84,21 +91,27 @@ class _$DashboardEntryModelCopyWithImpl<$Res, $Val extends DashboardEntryModel>
 }
 
 /// @nodoc
-abstract class _$$DashboardEntryModelImplCopyWith<$Res> implements $DashboardEntryModelCopyWith<$Res> {
-  factory _$$DashboardEntryModelImplCopyWith(
-          _$DashboardEntryModelImpl value, $Res Function(_$DashboardEntryModelImpl) then) =
+abstract class _$$DashboardEntryModelImplCopyWith<$Res>
+    implements $DashboardEntryModelCopyWith<$Res> {
+  factory _$$DashboardEntryModelImplCopyWith(_$DashboardEntryModelImpl value,
+          $Res Function(_$DashboardEntryModelImpl) then) =
       __$$DashboardEntryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String category, String name, String description, String? image});
+  $Res call(
+      {int id,
+      String category,
+      String name,
+      String description,
+      String? image});
 }
 
 /// @nodoc
 class __$$DashboardEntryModelImplCopyWithImpl<$Res>
     extends _$DashboardEntryModelCopyWithImpl<$Res, _$DashboardEntryModelImpl>
     implements _$$DashboardEntryModelImplCopyWith<$Res> {
-  __$$DashboardEntryModelImplCopyWithImpl(
-      _$DashboardEntryModelImpl _value, $Res Function(_$DashboardEntryModelImpl) _then)
+  __$$DashboardEntryModelImplCopyWithImpl(_$DashboardEntryModelImpl _value,
+      $Res Function(_$DashboardEntryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,9 +152,14 @@ class __$$DashboardEntryModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DashboardEntryModelImpl implements _DashboardEntryModel {
   const _$DashboardEntryModelImpl(
-      {required this.id, required this.category, required this.name, required this.description, this.image});
+      {required this.id,
+      required this.category,
+      required this.name,
+      required this.description,
+      this.image});
 
-  factory _$DashboardEntryModelImpl.fromJson(Map<String, dynamic> json) => _$$DashboardEntryModelImplFromJson(json);
+  factory _$DashboardEntryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DashboardEntryModelImplFromJson(json);
 
   @override
   final int id;
@@ -165,21 +183,25 @@ class _$DashboardEntryModelImpl implements _DashboardEntryModel {
         (other.runtimeType == runtimeType &&
             other is _$DashboardEntryModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.category, category) || other.category == category) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) || other.description == description) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, category, name, description, image);
+  int get hashCode =>
+      Object.hash(runtimeType, id, category, name, description, image);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DashboardEntryModelImplCopyWith<_$DashboardEntryModelImpl> get copyWith =>
-      __$$DashboardEntryModelImplCopyWithImpl<_$DashboardEntryModelImpl>(this, _$identity);
+      __$$DashboardEntryModelImplCopyWithImpl<_$DashboardEntryModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -197,7 +219,8 @@ abstract class _DashboardEntryModel implements DashboardEntryModel {
       required final String description,
       final String? image}) = _$DashboardEntryModelImpl;
 
-  factory _DashboardEntryModel.fromJson(Map<String, dynamic> json) = _$DashboardEntryModelImpl.fromJson;
+  factory _DashboardEntryModel.fromJson(Map<String, dynamic> json) =
+      _$DashboardEntryModelImpl.fromJson;
 
   @override
   int get id;
@@ -211,5 +234,6 @@ abstract class _DashboardEntryModel implements DashboardEntryModel {
   String? get image;
   @override
   @JsonKey(ignore: true)
-  _$$DashboardEntryModelImplCopyWith<_$DashboardEntryModelImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$DashboardEntryModelImplCopyWith<_$DashboardEntryModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

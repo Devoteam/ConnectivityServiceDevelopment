@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/presentation/device_specific_ui.dart';
+import '../../domain/entity/nav_drawer_entry.dart';
 
 class DashboardContentWithNavDrawer extends StatelessWidget {
+  final List<NavDrawerEntry> navDrawerEntries;
   final Function(int) onNacDrawerEntryClicked;
   final Widget child;
 
   const DashboardContentWithNavDrawer({
     super.key,
+    required this.navDrawerEntries,
     required this.onNacDrawerEntryClicked,
     required this.child,
   });
@@ -94,78 +96,39 @@ class DashboardContentWithNavDrawer extends StatelessWidget {
   }
 
   List<Widget> _getNavigationItems(BuildContext context) {
-    return [
-      ListTile(
-        leading: const Icon(Icons.wifi_outlined),
-        title: Text(
-          AppLocalizations.of(context)!.skodaConnectServicesSectionTitle,
-          style: const TextStyle(
-            decoration: TextDecoration.underline,
-          ),
+    final List<Widget> navItems = [];
+    int navItemIndex = 0;
+
+    for (var navDrawerEntry in navDrawerEntries) {
+      navItems.add(_buildCategoryHeader(navDrawerEntry.category));
+      for (var navDrawerEntryName in navDrawerEntry.names) {
+        navItems.add(_buildNavDrawerEntry(navDrawerEntryName, navItemIndex));
+        navItemIndex++;
+      }
+    }
+
+    return navItems;
+  }
+
+  Widget _buildCategoryHeader(String title) {
+    return ListTile(
+      leading: const Icon(Icons.menu),
+      title: Text(
+        title,
+        style: const TextStyle(
+          decoration: TextDecoration.underline,
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.careConnectRemoteAccess),
-          onTap: () => onNacDrawerEntryClicked(0),
-        ),
+    );
+  }
+
+  Widget _buildNavDrawerEntry(String title, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 32.0),
+      child: ListTile(
+        title: Text(title),
+        onTap: () => onNacDrawerEntryClicked(index),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.infotainmentOnline),
-          onTap: () => onNacDrawerEntryClicked(1),
-        ),
-      ),
-      ListTile(
-        leading: const Icon(Icons.connected_tv_outlined),
-        title: Text(
-          AppLocalizations.of(context)!.infotainmentApps,
-          style: const TextStyle(
-            decoration: TextDecoration.underline,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.traffication),
-          onTap: () => onNacDrawerEntryClicked(2),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.payToPark),
-          onTap: () => onNacDrawerEntryClicked(3),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.payToFuel),
-          onTap: () => onNacDrawerEntryClicked(4),
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.tab_outlined,
-        ),
-        title: Text(
-          AppLocalizations.of(context)!.functionsOnDemand,
-          style: const TextStyle(
-            decoration: TextDecoration.underline,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0),
-        child: ListTile(
-          title: Text(AppLocalizations.of(context)!.ambientLighting),
-          onTap: () => onNacDrawerEntryClicked(5),
-        ),
-      ),
-    ];
+    );
   }
 }

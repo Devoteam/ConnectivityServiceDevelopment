@@ -20,21 +20,27 @@ mixin _$DashboardState {
   TResult when<TResult extends Object?>({
     required TResult Function() shellNavigationLoading,
     required TResult Function() shellNavigationError,
-    required TResult Function(List<DashboardEntry> entries) shellNavigationContent,
+    required TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)
+        shellNavigationContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? shellNavigationLoading,
     TResult? Function()? shellNavigationError,
-    TResult? Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult? Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? shellNavigationLoading,
     TResult Function()? shellNavigationError,
-    TResult Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,12 +70,14 @@ mixin _$DashboardState {
 
 /// @nodoc
 abstract class $DashboardStateCopyWith<$Res> {
-  factory $DashboardStateCopyWith(DashboardState value, $Res Function(DashboardState) then) =
+  factory $DashboardStateCopyWith(
+          DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
 }
 
 /// @nodoc
-class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState> implements $DashboardStateCopyWith<$Res> {
+class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
+    implements $DashboardStateCopyWith<$Res> {
   _$DashboardStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -80,14 +88,17 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState> implements
 
 /// @nodoc
 abstract class _$$DashboardLoadingImplCopyWith<$Res> {
-  factory _$$DashboardLoadingImplCopyWith(_$DashboardLoadingImpl value, $Res Function(_$DashboardLoadingImpl) then) =
+  factory _$$DashboardLoadingImplCopyWith(_$DashboardLoadingImpl value,
+          $Res Function(_$DashboardLoadingImpl) then) =
       __$$DashboardLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$DashboardLoadingImplCopyWithImpl<$Res> extends _$DashboardStateCopyWithImpl<$Res, _$DashboardLoadingImpl>
+class __$$DashboardLoadingImplCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$DashboardLoadingImpl>
     implements _$$DashboardLoadingImplCopyWith<$Res> {
-  __$$DashboardLoadingImplCopyWithImpl(_$DashboardLoadingImpl _value, $Res Function(_$DashboardLoadingImpl) _then)
+  __$$DashboardLoadingImplCopyWithImpl(_$DashboardLoadingImpl _value,
+      $Res Function(_$DashboardLoadingImpl) _then)
       : super(_value, _then);
 }
 
@@ -103,7 +114,8 @@ class _$DashboardLoadingImpl implements DashboardLoading {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$DashboardLoadingImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DashboardLoadingImpl);
   }
 
   @override
@@ -114,7 +126,9 @@ class _$DashboardLoadingImpl implements DashboardLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() shellNavigationLoading,
     required TResult Function() shellNavigationError,
-    required TResult Function(List<DashboardEntry> entries) shellNavigationContent,
+    required TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)
+        shellNavigationContent,
   }) {
     return shellNavigationLoading();
   }
@@ -124,7 +138,9 @@ class _$DashboardLoadingImpl implements DashboardLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? shellNavigationLoading,
     TResult? Function()? shellNavigationError,
-    TResult? Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult? Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
   }) {
     return shellNavigationLoading?.call();
   }
@@ -134,7 +150,9 @@ class _$DashboardLoadingImpl implements DashboardLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? shellNavigationLoading,
     TResult Function()? shellNavigationError,
-    TResult Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
     required TResult orElse(),
   }) {
     if (shellNavigationLoading != null) {
@@ -184,14 +202,17 @@ abstract class DashboardLoading implements DashboardState {
 
 /// @nodoc
 abstract class _$$DashboardErrorImplCopyWith<$Res> {
-  factory _$$DashboardErrorImplCopyWith(_$DashboardErrorImpl value, $Res Function(_$DashboardErrorImpl) then) =
+  factory _$$DashboardErrorImplCopyWith(_$DashboardErrorImpl value,
+          $Res Function(_$DashboardErrorImpl) then) =
       __$$DashboardErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$DashboardErrorImplCopyWithImpl<$Res> extends _$DashboardStateCopyWithImpl<$Res, _$DashboardErrorImpl>
+class __$$DashboardErrorImplCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$DashboardErrorImpl>
     implements _$$DashboardErrorImplCopyWith<$Res> {
-  __$$DashboardErrorImplCopyWithImpl(_$DashboardErrorImpl _value, $Res Function(_$DashboardErrorImpl) _then)
+  __$$DashboardErrorImplCopyWithImpl(
+      _$DashboardErrorImpl _value, $Res Function(_$DashboardErrorImpl) _then)
       : super(_value, _then);
 }
 
@@ -207,7 +228,8 @@ class _$DashboardErrorImpl implements DashboardError {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$DashboardErrorImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DashboardErrorImpl);
   }
 
   @override
@@ -218,7 +240,9 @@ class _$DashboardErrorImpl implements DashboardError {
   TResult when<TResult extends Object?>({
     required TResult Function() shellNavigationLoading,
     required TResult Function() shellNavigationError,
-    required TResult Function(List<DashboardEntry> entries) shellNavigationContent,
+    required TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)
+        shellNavigationContent,
   }) {
     return shellNavigationError();
   }
@@ -228,7 +252,9 @@ class _$DashboardErrorImpl implements DashboardError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? shellNavigationLoading,
     TResult? Function()? shellNavigationError,
-    TResult? Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult? Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
   }) {
     return shellNavigationError?.call();
   }
@@ -238,7 +264,9 @@ class _$DashboardErrorImpl implements DashboardError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? shellNavigationLoading,
     TResult Function()? shellNavigationError,
-    TResult Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
     required TResult orElse(),
   }) {
     if (shellNavigationError != null) {
@@ -288,27 +316,37 @@ abstract class DashboardError implements DashboardState {
 
 /// @nodoc
 abstract class _$$DashboardContentImplCopyWith<$Res> {
-  factory _$$DashboardContentImplCopyWith(_$DashboardContentImpl value, $Res Function(_$DashboardContentImpl) then) =
+  factory _$$DashboardContentImplCopyWith(_$DashboardContentImpl value,
+          $Res Function(_$DashboardContentImpl) then) =
       __$$DashboardContentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<DashboardEntry> entries});
+  $Res call(
+      {List<NavDrawerEntry> navDrawerEntries,
+      List<DashboardEntry> dashboardEntries});
 }
 
 /// @nodoc
-class __$$DashboardContentImplCopyWithImpl<$Res> extends _$DashboardStateCopyWithImpl<$Res, _$DashboardContentImpl>
+class __$$DashboardContentImplCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$DashboardContentImpl>
     implements _$$DashboardContentImplCopyWith<$Res> {
-  __$$DashboardContentImplCopyWithImpl(_$DashboardContentImpl _value, $Res Function(_$DashboardContentImpl) _then)
+  __$$DashboardContentImplCopyWithImpl(_$DashboardContentImpl _value,
+      $Res Function(_$DashboardContentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entries = null,
+    Object? navDrawerEntries = null,
+    Object? dashboardEntries = null,
   }) {
     return _then(_$DashboardContentImpl(
-      null == entries
-          ? _value._entries
-          : entries // ignore: cast_nullable_to_non_nullable
+      null == navDrawerEntries
+          ? _value._navDrawerEntries
+          : navDrawerEntries // ignore: cast_nullable_to_non_nullable
+              as List<NavDrawerEntry>,
+      null == dashboardEntries
+          ? _value._dashboardEntries
+          : dashboardEntries // ignore: cast_nullable_to_non_nullable
               as List<DashboardEntry>,
     ));
   }
@@ -317,19 +355,32 @@ class __$$DashboardContentImplCopyWithImpl<$Res> extends _$DashboardStateCopyWit
 /// @nodoc
 
 class _$DashboardContentImpl implements DashboardContent {
-  const _$DashboardContentImpl(final List<DashboardEntry> entries) : _entries = entries;
+  const _$DashboardContentImpl(final List<NavDrawerEntry> navDrawerEntries,
+      final List<DashboardEntry> dashboardEntries)
+      : _navDrawerEntries = navDrawerEntries,
+        _dashboardEntries = dashboardEntries;
 
-  final List<DashboardEntry> _entries;
+  final List<NavDrawerEntry> _navDrawerEntries;
   @override
-  List<DashboardEntry> get entries {
-    if (_entries is EqualUnmodifiableListView) return _entries;
+  List<NavDrawerEntry> get navDrawerEntries {
+    if (_navDrawerEntries is EqualUnmodifiableListView)
+      return _navDrawerEntries;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_entries);
+    return EqualUnmodifiableListView(_navDrawerEntries);
+  }
+
+  final List<DashboardEntry> _dashboardEntries;
+  @override
+  List<DashboardEntry> get dashboardEntries {
+    if (_dashboardEntries is EqualUnmodifiableListView)
+      return _dashboardEntries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dashboardEntries);
   }
 
   @override
   String toString() {
-    return 'DashboardState.shellNavigationContent(entries: $entries)';
+    return 'DashboardState.shellNavigationContent(navDrawerEntries: $navDrawerEntries, dashboardEntries: $dashboardEntries)';
   }
 
   @override
@@ -337,26 +388,35 @@ class _$DashboardContentImpl implements DashboardContent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DashboardContentImpl &&
-            const DeepCollectionEquality().equals(other._entries, _entries));
+            const DeepCollectionEquality()
+                .equals(other._navDrawerEntries, _navDrawerEntries) &&
+            const DeepCollectionEquality()
+                .equals(other._dashboardEntries, _dashboardEntries));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_entries));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_navDrawerEntries),
+      const DeepCollectionEquality().hash(_dashboardEntries));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DashboardContentImplCopyWith<_$DashboardContentImpl> get copyWith =>
-      __$$DashboardContentImplCopyWithImpl<_$DashboardContentImpl>(this, _$identity);
+      __$$DashboardContentImplCopyWithImpl<_$DashboardContentImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() shellNavigationLoading,
     required TResult Function() shellNavigationError,
-    required TResult Function(List<DashboardEntry> entries) shellNavigationContent,
+    required TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)
+        shellNavigationContent,
   }) {
-    return shellNavigationContent(entries);
+    return shellNavigationContent(navDrawerEntries, dashboardEntries);
   }
 
   @override
@@ -364,9 +424,11 @@ class _$DashboardContentImpl implements DashboardContent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? shellNavigationLoading,
     TResult? Function()? shellNavigationError,
-    TResult? Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult? Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
   }) {
-    return shellNavigationContent?.call(entries);
+    return shellNavigationContent?.call(navDrawerEntries, dashboardEntries);
   }
 
   @override
@@ -374,11 +436,13 @@ class _$DashboardContentImpl implements DashboardContent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? shellNavigationLoading,
     TResult Function()? shellNavigationError,
-    TResult Function(List<DashboardEntry> entries)? shellNavigationContent,
+    TResult Function(List<NavDrawerEntry> navDrawerEntries,
+            List<DashboardEntry> dashboardEntries)?
+        shellNavigationContent,
     required TResult orElse(),
   }) {
     if (shellNavigationContent != null) {
-      return shellNavigationContent(entries);
+      return shellNavigationContent(navDrawerEntries, dashboardEntries);
     }
     return orElse();
   }
@@ -419,9 +483,12 @@ class _$DashboardContentImpl implements DashboardContent {
 }
 
 abstract class DashboardContent implements DashboardState {
-  const factory DashboardContent(final List<DashboardEntry> entries) = _$DashboardContentImpl;
+  const factory DashboardContent(final List<NavDrawerEntry> navDrawerEntries,
+      final List<DashboardEntry> dashboardEntries) = _$DashboardContentImpl;
 
-  List<DashboardEntry> get entries;
+  List<NavDrawerEntry> get navDrawerEntries;
+  List<DashboardEntry> get dashboardEntries;
   @JsonKey(ignore: true)
-  _$$DashboardContentImplCopyWith<_$DashboardContentImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$DashboardContentImplCopyWith<_$DashboardContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

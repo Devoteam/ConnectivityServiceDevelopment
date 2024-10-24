@@ -29,9 +29,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardCubit, DashboardState>(builder: (context, state) {
       return state.when(
-        shellNavigationLoading: () => const Center(
-          child: Scaffold(
-            body: CircularProgressIndicator(),
+        shellNavigationLoading: () => const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
           ),
         ),
         shellNavigationError: () => const Scaffold(
@@ -39,7 +39,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
             child: Text('oops'),
           ),
         ),
-        shellNavigationContent: (_) => DashboardContentWithNavDrawer(
+        shellNavigationContent: (
+          navDrawerEntries,
+          dashboardEntries,
+        ) =>
+            DashboardContentWithNavDrawer(
+          navDrawerEntries: navDrawerEntries,
           onNacDrawerEntryClicked: (index) {
             controller.animateTo(
               index * 200,
@@ -49,9 +54,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
           },
           child: ListView.builder(
             controller: controller,
-            itemCount: 6,
+            itemCount: dashboardEntries.length,
             itemBuilder: (_, i) {
-              return const DashboardCard();
+              return DashboardCard(dashboardEntry: dashboardEntries[i]);
             },
           ),
         ),
