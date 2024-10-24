@@ -7,9 +7,9 @@ part 'dashboard_state.freezed.dart';
 
 @freezed
 sealed class DashboardState with _$DashboardState {
-  const factory DashboardState.shellNavigationLoading() = DashboardLoading;
-  const factory DashboardState.shellNavigationError() = DashboardError;
-  const factory DashboardState.shellNavigationContent(
+  const factory DashboardState.dashboardLoading() = DashboardLoading;
+  const factory DashboardState.dashboardError() = DashboardError;
+  const factory DashboardState.dashboardContent(
     NavDrawerEntries navDrawerEntries,
     DashboardEntries dashboardEntries,
   ) = DashboardContent;

@@ -16,28 +16,25 @@ class DashboardCubit extends Cubit<DashboardState> {
           const DashboardLoading(),
         );
 
-  void init() async {
-    _dashboardService.readProducts().then(
-      (entries) {
-        final navDrawerEntries = _transformToNavDrawerEntries(entries);
+  Future<void> init() async {
+    try {
+      final products = await _dashboardService.readProducts();
+      final navDrawerEntries = transformToNavDrawerEntries(products);
 
-        emit(
-          DashboardContent(
-            navDrawerEntries,
-            entries,
-          ),
-        );
-      },
-    ).onError(
-      (e, s) {
-        emit(
-          const DashboardError(),
-        );
-      },
-    );
+      emit(
+        DashboardContent(
+          navDrawerEntries,
+          products,
+        ),
+      );
+    } catch (_) {
+      emit(
+        const DashboardError(),
+      );
+    }
   }
 
-  List<NavDrawerEntry> _transformToNavDrawerEntries(List<DashboardEntry> dashboardEntries) {
+  List<NavDrawerEntry> transformToNavDrawerEntries(List<DashboardEntry> dashboardEntries) {
     final Map<String, List<String>> groupedByCategory = {};
 
     for (var entry in dashboardEntries) {

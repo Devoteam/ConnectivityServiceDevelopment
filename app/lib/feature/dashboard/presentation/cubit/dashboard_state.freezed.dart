@@ -18,51 +18,51 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DashboardState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() shellNavigationLoading,
-    required TResult Function() shellNavigationError,
+    required TResult Function() dashboardLoading,
+    required TResult Function() dashboardError,
     required TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)
-        shellNavigationContent,
+        dashboardContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shellNavigationLoading,
-    TResult? Function()? shellNavigationError,
+    TResult? Function()? dashboardLoading,
+    TResult? Function()? dashboardError,
     TResult? Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shellNavigationLoading,
-    TResult Function()? shellNavigationError,
+    TResult Function()? dashboardLoading,
+    TResult Function()? dashboardError,
     TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DashboardLoading value) shellNavigationLoading,
-    required TResult Function(DashboardError value) shellNavigationError,
-    required TResult Function(DashboardContent value) shellNavigationContent,
+    required TResult Function(DashboardLoading value) dashboardLoading,
+    required TResult Function(DashboardError value) dashboardError,
+    required TResult Function(DashboardContent value) dashboardContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DashboardLoading value)? shellNavigationLoading,
-    TResult? Function(DashboardError value)? shellNavigationError,
-    TResult? Function(DashboardContent value)? shellNavigationContent,
+    TResult? Function(DashboardLoading value)? dashboardLoading,
+    TResult? Function(DashboardError value)? dashboardError,
+    TResult? Function(DashboardContent value)? dashboardContent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DashboardLoading value)? shellNavigationLoading,
-    TResult Function(DashboardError value)? shellNavigationError,
-    TResult Function(DashboardContent value)? shellNavigationContent,
+    TResult Function(DashboardLoading value)? dashboardLoading,
+    TResult Function(DashboardError value)? dashboardError,
+    TResult Function(DashboardContent value)? dashboardContent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,7 +109,7 @@ class _$DashboardLoadingImpl implements DashboardLoading {
 
   @override
   String toString() {
-    return 'DashboardState.shellNavigationLoading()';
+    return 'DashboardState.dashboardLoading()';
   }
 
   @override
@@ -124,39 +124,39 @@ class _$DashboardLoadingImpl implements DashboardLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() shellNavigationLoading,
-    required TResult Function() shellNavigationError,
+    required TResult Function() dashboardLoading,
+    required TResult Function() dashboardError,
     required TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationLoading();
+    return dashboardLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shellNavigationLoading,
-    TResult? Function()? shellNavigationError,
+    TResult? Function()? dashboardLoading,
+    TResult? Function()? dashboardError,
     TResult? Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationLoading?.call();
+    return dashboardLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shellNavigationLoading,
-    TResult Function()? shellNavigationError,
+    TResult Function()? dashboardLoading,
+    TResult Function()? dashboardError,
     TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationLoading != null) {
-      return shellNavigationLoading();
+    if (dashboardLoading != null) {
+      return dashboardLoading();
     }
     return orElse();
   }
@@ -164,33 +164,33 @@ class _$DashboardLoadingImpl implements DashboardLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DashboardLoading value) shellNavigationLoading,
-    required TResult Function(DashboardError value) shellNavigationError,
-    required TResult Function(DashboardContent value) shellNavigationContent,
+    required TResult Function(DashboardLoading value) dashboardLoading,
+    required TResult Function(DashboardError value) dashboardError,
+    required TResult Function(DashboardContent value) dashboardContent,
   }) {
-    return shellNavigationLoading(this);
+    return dashboardLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DashboardLoading value)? shellNavigationLoading,
-    TResult? Function(DashboardError value)? shellNavigationError,
-    TResult? Function(DashboardContent value)? shellNavigationContent,
+    TResult? Function(DashboardLoading value)? dashboardLoading,
+    TResult? Function(DashboardError value)? dashboardError,
+    TResult? Function(DashboardContent value)? dashboardContent,
   }) {
-    return shellNavigationLoading?.call(this);
+    return dashboardLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DashboardLoading value)? shellNavigationLoading,
-    TResult Function(DashboardError value)? shellNavigationError,
-    TResult Function(DashboardContent value)? shellNavigationContent,
+    TResult Function(DashboardLoading value)? dashboardLoading,
+    TResult Function(DashboardError value)? dashboardError,
+    TResult Function(DashboardContent value)? dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationLoading != null) {
-      return shellNavigationLoading(this);
+    if (dashboardLoading != null) {
+      return dashboardLoading(this);
     }
     return orElse();
   }
@@ -223,7 +223,7 @@ class _$DashboardErrorImpl implements DashboardError {
 
   @override
   String toString() {
-    return 'DashboardState.shellNavigationError()';
+    return 'DashboardState.dashboardError()';
   }
 
   @override
@@ -238,39 +238,39 @@ class _$DashboardErrorImpl implements DashboardError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() shellNavigationLoading,
-    required TResult Function() shellNavigationError,
+    required TResult Function() dashboardLoading,
+    required TResult Function() dashboardError,
     required TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationError();
+    return dashboardError();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shellNavigationLoading,
-    TResult? Function()? shellNavigationError,
+    TResult? Function()? dashboardLoading,
+    TResult? Function()? dashboardError,
     TResult? Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationError?.call();
+    return dashboardError?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shellNavigationLoading,
-    TResult Function()? shellNavigationError,
+    TResult Function()? dashboardLoading,
+    TResult Function()? dashboardError,
     TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationError != null) {
-      return shellNavigationError();
+    if (dashboardError != null) {
+      return dashboardError();
     }
     return orElse();
   }
@@ -278,33 +278,33 @@ class _$DashboardErrorImpl implements DashboardError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DashboardLoading value) shellNavigationLoading,
-    required TResult Function(DashboardError value) shellNavigationError,
-    required TResult Function(DashboardContent value) shellNavigationContent,
+    required TResult Function(DashboardLoading value) dashboardLoading,
+    required TResult Function(DashboardError value) dashboardError,
+    required TResult Function(DashboardContent value) dashboardContent,
   }) {
-    return shellNavigationError(this);
+    return dashboardError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DashboardLoading value)? shellNavigationLoading,
-    TResult? Function(DashboardError value)? shellNavigationError,
-    TResult? Function(DashboardContent value)? shellNavigationContent,
+    TResult? Function(DashboardLoading value)? dashboardLoading,
+    TResult? Function(DashboardError value)? dashboardError,
+    TResult? Function(DashboardContent value)? dashboardContent,
   }) {
-    return shellNavigationError?.call(this);
+    return dashboardError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DashboardLoading value)? shellNavigationLoading,
-    TResult Function(DashboardError value)? shellNavigationError,
-    TResult Function(DashboardContent value)? shellNavigationContent,
+    TResult Function(DashboardLoading value)? dashboardLoading,
+    TResult Function(DashboardError value)? dashboardError,
+    TResult Function(DashboardContent value)? dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationError != null) {
-      return shellNavigationError(this);
+    if (dashboardError != null) {
+      return dashboardError(this);
     }
     return orElse();
   }
@@ -380,7 +380,7 @@ class _$DashboardContentImpl implements DashboardContent {
 
   @override
   String toString() {
-    return 'DashboardState.shellNavigationContent(navDrawerEntries: $navDrawerEntries, dashboardEntries: $dashboardEntries)';
+    return 'DashboardState.dashboardContent(navDrawerEntries: $navDrawerEntries, dashboardEntries: $dashboardEntries)';
   }
 
   @override
@@ -410,39 +410,39 @@ class _$DashboardContentImpl implements DashboardContent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() shellNavigationLoading,
-    required TResult Function() shellNavigationError,
+    required TResult Function() dashboardLoading,
+    required TResult Function() dashboardError,
     required TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationContent(navDrawerEntries, dashboardEntries);
+    return dashboardContent(navDrawerEntries, dashboardEntries);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shellNavigationLoading,
-    TResult? Function()? shellNavigationError,
+    TResult? Function()? dashboardLoading,
+    TResult? Function()? dashboardError,
     TResult? Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
   }) {
-    return shellNavigationContent?.call(navDrawerEntries, dashboardEntries);
+    return dashboardContent?.call(navDrawerEntries, dashboardEntries);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shellNavigationLoading,
-    TResult Function()? shellNavigationError,
+    TResult Function()? dashboardLoading,
+    TResult Function()? dashboardError,
     TResult Function(List<NavDrawerEntry> navDrawerEntries,
             List<DashboardEntry> dashboardEntries)?
-        shellNavigationContent,
+        dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationContent != null) {
-      return shellNavigationContent(navDrawerEntries, dashboardEntries);
+    if (dashboardContent != null) {
+      return dashboardContent(navDrawerEntries, dashboardEntries);
     }
     return orElse();
   }
@@ -450,33 +450,33 @@ class _$DashboardContentImpl implements DashboardContent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DashboardLoading value) shellNavigationLoading,
-    required TResult Function(DashboardError value) shellNavigationError,
-    required TResult Function(DashboardContent value) shellNavigationContent,
+    required TResult Function(DashboardLoading value) dashboardLoading,
+    required TResult Function(DashboardError value) dashboardError,
+    required TResult Function(DashboardContent value) dashboardContent,
   }) {
-    return shellNavigationContent(this);
+    return dashboardContent(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DashboardLoading value)? shellNavigationLoading,
-    TResult? Function(DashboardError value)? shellNavigationError,
-    TResult? Function(DashboardContent value)? shellNavigationContent,
+    TResult? Function(DashboardLoading value)? dashboardLoading,
+    TResult? Function(DashboardError value)? dashboardError,
+    TResult? Function(DashboardContent value)? dashboardContent,
   }) {
-    return shellNavigationContent?.call(this);
+    return dashboardContent?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DashboardLoading value)? shellNavigationLoading,
-    TResult Function(DashboardError value)? shellNavigationError,
-    TResult Function(DashboardContent value)? shellNavigationContent,
+    TResult Function(DashboardLoading value)? dashboardLoading,
+    TResult Function(DashboardError value)? dashboardError,
+    TResult Function(DashboardContent value)? dashboardContent,
     required TResult orElse(),
   }) {
-    if (shellNavigationContent != null) {
-      return shellNavigationContent(this);
+    if (dashboardContent != null) {
+      return dashboardContent(this);
     }
     return orElse();
   }

@@ -29,17 +29,17 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardCubit, DashboardState>(builder: (context, state) {
       return state.when(
-        shellNavigationLoading: () => const Scaffold(
+        dashboardLoading: () => const Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
           ),
         ),
-        shellNavigationError: () => const Scaffold(
+        dashboardError: () => const Scaffold(
           body: Center(
             child: Text('oops'),
           ),
         ),
-        shellNavigationContent: (
+        dashboardContent: (
           navDrawerEntries,
           dashboardEntries,
         ) =>
