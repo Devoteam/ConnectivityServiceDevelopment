@@ -7,7 +7,7 @@ import '../../constants.dart';
 abstract class HttpModule {
   @dev
   @Named(kBaseUrl)
-  String provideDevBaseUrl() => 'http://connectivity-service-dev-alb-500377647.eu-central-1.elb.amazonaws.com:8080';
+  String provideDevBaseUrl() => liveUrl;
 
   @Named(kBaseOptions)
   @lazySingleton

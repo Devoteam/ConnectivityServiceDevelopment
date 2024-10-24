@@ -11,7 +11,6 @@ class DashboardEntryMapper {
       category: model.category,
       name: model.name,
       description: model.description,
-      image: model.image,
     );
   }
 }

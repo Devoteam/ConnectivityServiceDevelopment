@@ -21,6 +21,8 @@ import 'package:connect_service_app/feature/dashboard/domain/repository/dashboar
     as _i152;
 import 'package:connect_service_app/feature/dashboard/domain/service/dashboard_service.dart'
     as _i538;
+import 'package:connect_service_app/feature/dashboard/presentation/cubit/dashboard_card_cubit.dart'
+    as _i763;
 import 'package:connect_service_app/feature/dashboard/presentation/cubit/dashboard_cubit.dart'
     as _i48;
 import 'package:dio/dio.dart' as _i361;
@@ -41,6 +43,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final httpModule = _$HttpModule();
+    gh.factory<_i763.DashboardCardCubit>(() => _i763.DashboardCardCubit());
     gh.lazySingleton<_i812.DashboardEntryMapper>(
         () => _i812.DashboardEntryMapper());
     gh.factory<String>(

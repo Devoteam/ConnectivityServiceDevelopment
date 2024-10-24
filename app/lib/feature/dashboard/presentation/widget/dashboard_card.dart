@@ -1,26 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/presentation/device_specific_ui.dart';
+import '../../domain/entity/dashboard_entry.dart';
+import '../cubit/dashboard_card_cubit.dart';
+import '../cubit/dashboard_card_state.dart';
 
-class DashboardCard extends StatelessWidget {
-  const DashboardCard({super.key});
+class DashboardCard extends StatefulWidget {
+  final DashboardEntry dashboardEntry;
+  final bool isActive;
+
+  const DashboardCard({
+    super.key,
+    required this.dashboardEntry,
+    required this.isActive,
+  });
+
+  @override
+  State<DashboardCard> createState() => _DashboardCardState();
+}
+
+class _DashboardCardState extends State<DashboardCard> {
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<DashboardCardCubit>(context).setInitialState(widget.isActive);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DeviceSpecificUI(
-      mobileUi: _buildCard(
-        isMobile: true,
-        imageSize: const Size(72, 48),
-        imagePadding: const EdgeInsets.only(left: 20),
-        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
-      ),
-      automotiveUi: _buildCard(
-        isMobile: false,
-        imageSize: const Size(256, 128),
-        imagePadding: const EdgeInsets.only(left: 72),
-        contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
-      ),
-    );
+    return BlocBuilder<DashboardCardCubit, DashboardCardState>(builder: (context, state) {
+      return DeviceSpecificUI(
+        mobileUi: _buildCard(
+          isMobile: true,
+          imageSize: const Size(90, 60),
+          imagePadding: const EdgeInsets.only(left: 20),
+          contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+          state: state,
+        ),
+        automotiveUi: _buildCard(
+          isMobile: false,
+          imageSize: const Size(256, 160),
+          imagePadding: const EdgeInsets.only(left: 8),
+          contentPadding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
+          state: state,
+        ),
+      );
+    });
   }
 
   Widget _buildCard({
@@ -28,38 +56,44 @@ class DashboardCard extends StatelessWidget {
     required Size imageSize,
     required EdgeInsets imagePadding,
     required EdgeInsets contentPadding,
+    required DashboardCardState state,
   }) {
     return Card(
+      elevation: 8,
       child: Padding(
         padding: contentPadding,
-        child:
-            isMobile ? _buildMobileContent(imageSize, imagePadding) : _buildAutomotiveContent(imageSize, imagePadding),
+        child: isMobile
+            ? _buildMobileContent(imageSize, imagePadding, state)
+            : _buildAutomotiveContent(imageSize, imagePadding, state),
       ),
     );
   }
 
-  Widget _buildMobileContent(Size imageSize, EdgeInsets imagePadding) {
+  Widget _buildMobileContent(Size imageSize, EdgeInsets imagePadding, DashboardCardState state) {
     return Column(
       children: [
         Row(
           children: [
             _buildImage(imageSize),
-            Padding(
-              padding: imagePadding,
-              child: _buildTitle(),
+            Flexible(
+              child: Padding(
+                padding: imagePadding,
+                child: _buildTitle(),
+              ),
             ),
           ],
         ),
         const SizedBox(height: 12),
         _buildDescription(),
         const SizedBox(height: 12),
-        _buildStatusRow(),
+        _buildStatusRow(state),
       ],
     );
   }
 
-  Widget _buildAutomotiveContent(Size imageSize, EdgeInsets imagePadding) {
+  Widget _buildAutomotiveContent(Size imageSize, EdgeInsets imagePadding, DashboardCardState state) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildImage(imageSize),
         Expanded(
@@ -72,16 +106,20 @@ class DashboardCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildTitle(),
-                    _buildActiveStatus(),
+                    _buildActiveStatus(state),
                   ],
                 ),
                 const SizedBox(height: 12),
                 _buildDescription(),
-                const SizedBox(height: 12),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: _buildLicenseInfo(),
-                ),
+                if (state is DashboardContent) ...[
+                  if (state.isActive) ...[
+                    const SizedBox(height: 48),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: _buildLicenseInfo(),
+                    ),
+                  ]
+                ]
               ],
             ),
           ),
@@ -94,44 +132,72 @@ class DashboardCard extends StatelessWidget {
     return SizedBox(
       width: size.width,
       height: size.height,
-      child: const Placeholder(),
+      child: Image.network(
+        widget.dashboardEntry.imageUrl,
+      ),
     );
   }
 
   Widget _buildTitle() {
-    return const Text(
-      'Care Connect - RemoteAccess',
+    return Text(
+      widget.dashboardEntry.name,
       style: TextStyle(fontWeight: FontWeight.bold),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
     );
   }
 
   Widget _buildLicenseInfo() {
-    return const Text('Current licence ends: 01.01.2020');
+    return Text(AppLocalizations.of(context)!.licenceEndDate);
   }
 
-  Widget _buildActiveStatus() {
-    return const Row(
-      children: [
-        Icon(Icons.check),
-        SizedBox(width: 4),
-        Text('Active'),
-      ],
+  Widget _buildActiveStatus(DashboardCardState state) {
+    return state.when(
+      dashboardLoading: () => Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 48,
+        ),
+        child: CircularProgressIndicator(),
+      ),
+      dashboardContent: (isActive) => isActive
+          ? Row(
+              children: [
+                Icon(
+                  Icons.check,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 4),
+                Text(AppLocalizations.of(context)!.active),
+              ],
+            )
+          : ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              onPressed: BlocProvider.of<DashboardCardCubit>(context).onSubscribedClicked,
+              child: Text(AppLocalizations.of(context)!.subscribe,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+            ),
     );
   }
 
-  Widget _buildStatusRow() {
+  Widget _buildStatusRow(DashboardCardState state) {
     return Row(
       children: [
-        _buildLicenseInfo(),
+        if (state is DashboardContent) ...[
+          if (state.isActive) ...[
+            _buildLicenseInfo(),
+          ],
+        ],
         const Spacer(),
-        _buildActiveStatus(),
+        _buildActiveStatus(state),
       ],
     );
   }
 
   Widget _buildDescription() {
-    return const Text(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean placerat tincidunt erat. Donec convallis, nulla sed maximus rutrum, est mi congue felis, nec rhoncus eros elit non leo. Aenean at molestie ante. Quisque ut ultrices nisl.',
+    return Text(
+      widget.dashboardEntry.description,
     );
   }
 }
