@@ -24,8 +24,7 @@ name: Deploy Backend to AWS ECS
 on:
   push:
     branches:
-      - ci-cd  # Deploy only on push to ci-cd branch
-      # - main  # Deploy only on push to main branch
+      - main  # Deploy only on push to main branch
 
 jobs:
   # 1. Run Backend Tests
