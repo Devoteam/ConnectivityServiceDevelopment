@@ -1,0 +1,99 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "image": "205930623194.dkr.ecr.eu-central-1.amazonaws.com/connectivity-service-development/backend:latest",
+      "cpu": 0,
+      "memoryReservation": 2048,
+      "portMappings": [
+        {
+          "name": "8080",
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "secrets": [
+        {
+          "name": "CSD_DB_USER",
+          "valueFrom": "arn:aws:ssm:eu-central-1:205930623194:parameter/db-user"
+        },
+        {
+          "name": "CSD_DB_PASSWORD",
+          "valueFrom": "arn:aws:ssm:eu-central-1:205930623194:parameter/db-password"
+        }
+      ],
+      "environment": [
+        {
+          "name": "CSD_DB_URL",
+          "value": "jdbc:mysql://database.cluster-cj484caqkjkm.eu-central-1.rds.amazonaws.com:3306/csd"
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/connectivity-service-development",
+          "mode": "non-blocking",
+          "awslogs-create-group": "true",
+          "max-buffer-size": "25m",
+          "awslogs-region": "eu-central-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "wget -q -O - http://localhost:8080/alive || exit 1"
+        ],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      },
+      "systemControls": []
+    },
+    {
+      "name": "aws-otel-collector",
+      "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.40.2",
+      "cpu": 0,
+      "portMappings": [],
+      "essential": true,
+      "command": ["--config=/etc/ecs/ecs-cloudwatch.yaml"],
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+          "mode": "non-blocking",
+          "awslogs-create-group": "true",
+          "max-buffer-size": "25m",
+          "awslogs-region": "eu-central-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "connectivity-service-development",
+  "executionRoleArn": "arn:aws:iam::205930623194:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "2048",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "tags": []
+}

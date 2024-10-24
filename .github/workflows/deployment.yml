@@ -1,0 +1,202 @@
+name: Deploy Backend to AWS ECS
+
+# 1: Run Backend Tests
+# -> Step 1: Checkout repository
+# -> Step 2: Set up Java
+# -> Step 3: Cache Maven dependencies
+# -> Step 4: Build Java project and run tests
+
+# 2: Run Frontend Tests
+# -> Step 1: Checkout repository
+# -> Step 2: Set up Flutter
+# -> Step 3: Cache Flutter dependencies
+# -> Step 4: Get Flutter dependencies
+# -> Step 5: Run Flutter tests (unit and widget tests)
+
+# 3: Deploy Backend to ECS on tests passed
+# -> Step 1: Checkout repository
+# -> Step 2: Set up Java
+# -> Step 3: Build Docker image
+# -> Step 4: Push Docker image to Amazon ECR
+# -> Step 5: Update ECS service
+
+
+on:
+  push:
+    branches:
+      - main  # Deploy only on push to main branch
+
+jobs:
+  # 1. Run Backend Tests
+  test-backend:
+    runs-on: ubuntu-latest
+    name: Run Backend Tests
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install AWS CLI (if not pre-installed)
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      # Configure AWS credentials (use secrets for security)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Get Parameters from AWS Parameter Store
+      - name: Retrieve parameters from AWS SSM
+        id: ssm-params
+        run: |
+          # Fetching the parameters from SSM
+          CSD_DB_PASSWORD=$(aws ssm get-parameter --name "db-live-password" --with-decryption --query "Parameter.Value" --output text)
+          CSD_DB_USER=$(aws ssm get-parameter --name "db-live-user" --with-decryption --query "Parameter.Value" --output text)
+          
+          # Export the parameters as environment variables
+          echo "CSD_DB_PASSWORD=$CSD_DB_PASSWORD" >> $GITHUB_ENV
+          echo "CSD_DB_USER=$CSD_DB_USER" >> $GITHUB_ENV
+          echo "CSD_DB_URL=jdbc:mysql://database-live.cluster-cj484caqkjkm.eu-central-1.rds.amazonaws.com:3306/csd" >> $GITHUB_ENV
+
+      # Step 2: Set up Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'oracle'
+
+      # Step 3: Cache Maven dependencies
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Step 4: Build Java project and run tests
+      - name: Run Java backend tests with Maven
+        run: |
+          cd ./backend
+          mvn clean test
+        env:
+          CSD_DB_USER: ${{ env.CSD_DB_USER }}
+          CSD_DB_PASSWORD: ${{ env.CSD_DB_PASSWORD }}
+          CSD_DB_URL: ${{ env.CSD_DB_URL }}
+
+  # 2. Run Frontend Tests
+  test-mobile:
+    runs-on: ubuntu-latest
+    name: Run Flutter Mobile App Tests
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Flutter
+      # Install the correct version of Flutter (which includes Dart SDK 3.5.3)
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.3'  # Specify the Flutter version that includes Dart SDK 3.5.3
+          channel: stable  # Adjust this if you need a different channel
+
+      # Verify Flutter and Dart installation
+      - name: Run Flutter Doctor
+        run: flutter doctor
+
+      # Step 3: Cache Flutter dependencies
+      - name: Cache Flutter packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+            .packages
+          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      # Step 4: Get Flutter dependencies
+      - name: Install Flutter dependencies
+        run: |
+          cd ./app
+          flutter pub get
+
+      # Step 5: Run Flutter tests (unit and widget tests)
+      - name: Run Flutter tests
+        run: |
+          cd ./app
+          flutter test
+
+  # Deploy Backend to ECS
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to AWS ECS
+    # needs: [test-mobile, test-backend]  # Ensure tests pass before deploying
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'oracle'
+
+      # Step 3: Build the Docker image
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and tag Docker image
+        run: |
+          IMAGE_TAG=latest
+          IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG"
+          pwd
+          docker build -t $IMAGE_URI ./backend
+          echo "Built Docker image: $IMAGE_URI"
+
+      # Step 4: Push Docker image to Amazon ECR
+      - name: Push Docker image to Amazon ECR
+        run: |
+          IMAGE_TAG=latest
+          IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG"
+          docker push $IMAGE_URI
+
+      # Step 5: Update ECS staging service
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ./.github/workflows/backend-task-def.json
+          service: ${{ secrets.ECS_SERVICE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          region: ${{ secrets.AWS_REGION }}
+          wait-for-service-stability: true
+
+      # Step 6: Update ECS live service
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ./.github/workflows/backend-live-task-def.json
+          service: ${{ secrets.ECS_SERVICE_LIVE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          region: ${{ secrets.AWS_REGION }}
+          wait-for-service-stability: true
+
+      
