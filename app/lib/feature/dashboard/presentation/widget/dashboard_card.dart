@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/presentation/device_specific_ui.dart';
 import '../../domain/entity/dashboard_entry.dart';
@@ -110,17 +111,15 @@ class _DashboardCardState extends State<DashboardCard> {
                 ),
                 const SizedBox(height: 12),
                 _buildDescription(),
-                if (state is DashboardContent)...[
-                  if(state.isActive)...[
+                if (state is DashboardContent) ...[
+                  if (state.isActive) ...[
                     const SizedBox(height: 48),
                     Align(
                       alignment: Alignment.centerRight,
                       child: _buildLicenseInfo(),
                     ),
                   ]
-
                 ]
-
               ],
             ),
           ),
@@ -149,29 +148,35 @@ class _DashboardCardState extends State<DashboardCard> {
   }
 
   Widget _buildLicenseInfo() {
-    return const Text('Lizenz endet am : 01.01.2025');
+    return Text(AppLocalizations.of(context)!.licenceEndDate);
   }
 
   Widget _buildActiveStatus(DashboardCardState state) {
     return state.when(
-      dashboardLoading: () => CircularProgressIndicator(),
+      dashboardLoading: () => Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 48,
+        ),
+        child: CircularProgressIndicator(),
+      ),
       dashboardContent: (isActive) => isActive
           ? Row(
               children: [
-                Icon(Icons.check, color: Colors.green,),
+                Icon(
+                  Icons.check,
+                  color: Colors.green,
+                ),
                 SizedBox(width: 4),
-                Text('Active'),
+                Text(AppLocalizations.of(context)!.active),
               ],
             )
           : ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               onPressed: BlocProvider.of<DashboardCardCubit>(context).onSubscribedClicked,
-              child: Text(
-                'Subscribe',
+              child: Text(AppLocalizations.of(context)!.subscribe,
                   style: TextStyle(
                     color: Colors.white,
-                  )
-              ),
+                  )),
             ),
     );
   }
@@ -179,7 +184,11 @@ class _DashboardCardState extends State<DashboardCard> {
   Widget _buildStatusRow(DashboardCardState state) {
     return Row(
       children: [
-        _buildLicenseInfo(),
+        if (state is DashboardContent) ...[
+          if (state.isActive) ...[
+            _buildLicenseInfo(),
+          ],
+        ],
         const Spacer(),
         _buildActiveStatus(state),
       ],
