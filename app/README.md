@@ -2,15 +2,24 @@
 
 A new Flutter project.
 
-## Getting Started
+## Flutter Befehle
+-> Regenerate generated classes (*.g,*.freezed,*.mock)
+(fvm) dart run build_runner build --delete-conflicting-outputs
 
-This project is a starting point for a Flutter application.
+-> Installation of packages used
+(fvm) flutter pub get
 
-A few resources to get you started if this is your first Flutter project:
+## Android Automotive
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Nötige Einträge im AndroidManifest:
+<meta-data android:name="distractionOptimized" android:value="true"/>
+<uses-permission android:name="android.car.permission.CAR_UX_RESTRICTIONS_CONFIGURATION" />
+<uses-permission android:name="android.car.permission.CAR_DRIVING_STATE"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+=> both permissions use android:protectionLevel="signature|privileged".
+   This means they cannot be used in our current debug build
+(https://developer.android.com/guide/topics/manifest/permission-element)
+
+The listeners necessary to react to changes in the UxRestrictions are initialized and registered in MainActivity.kt.
+When events arrive, they are sent to the Flutter layer via so-called MethodChannels (https://docs.flutter.dev/platform-integration/platform-channels).
+The UI could now be adapted to the events.
