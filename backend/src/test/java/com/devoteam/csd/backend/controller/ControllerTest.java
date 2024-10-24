@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -96,8 +95,7 @@ class ControllerTest {
 		when(productService.getProductImage(1L)).thenReturn(imageData);
 		MvcResult result = this.mvc.perform(get("/products/image/1")).andExpect(status().isOk()).andReturn();
 		assertNotNull(result);
-		String content = result.getResponse().getContentAsString();
-		assertEquals("Hello image!", content);
+		assertEquals("Hello image!", result.getResponse().getContentAsString());
 	}
 
 	/**
