@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:jetpack/jetpack.dart';
 
 class SubscribeButtonViewModel extends ViewModel {
@@ -7,5 +8,12 @@ class SubscribeButtonViewModel extends ViewModel {
 
   void setActive() {
     _active.value = true;
+  }
+}
+
+extension BuildContextExtension on BuildContext {
+  SubscribeButtonViewModel viewModel({String key = ""}) {
+    final viewModel = getViewModel<SubscribeButtonViewModel>(key: key);
+    return viewModel;
   }
 }
