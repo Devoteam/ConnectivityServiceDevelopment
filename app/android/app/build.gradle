@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    useLibrary 'android.car'
+//    useLibrary 'android.car'
 
     namespace = "com.devoteam.connect_service_app"
     compileSdk = flutter.compileSdkVersion
@@ -45,8 +45,8 @@ flutter {
     source = "../.."
 }
 
-dependencies {
-    implementation "androidx.car.app:app:1.7.0-beta02"
-    implementation "androidx.car.app:app-automotive:1.7.0-beta02"
-    testImplementation "androidx.car.app:app-testing:1.7.0-beta02"
-}
+//dependencies {
+//    implementation "androidx.car.app:app:1.7.0-beta02"
+//    implementation "androidx.car.app:app-automotive:1.7.0-beta02"
+//    testImplementation "androidx.car.app:app-testing:1.7.0-beta02"
+//}

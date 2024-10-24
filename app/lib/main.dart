@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'core/car_ux_restrictions/car_ux_restrictions_manager.dart';
+//import 'core/car_ux_restrictions/car_ux_restrictions_manager.dart';
 import 'core/service_locator/injectable.dart';
 import 'feature/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'feature/dashboard/presentation/dashboard_page.dart';
@@ -11,7 +11,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   configureDependencies();
-  CarUxRestrictionsManager.initialize();
+  //CarUxRestrictionsManager.initialize();
 
   runApp(const MyApp());
 }
