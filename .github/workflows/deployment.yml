@@ -56,7 +56,9 @@ jobs:
 
       # Step 4: Build Java project and run tests
       - name: Run Java backend tests with Maven
-        run: mvn clean test
+        run: |
+          cd ./backend
+          mvn clean test
 
   # 2. Run Frontend Tests
   test-mobile:
