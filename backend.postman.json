@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "baf94119-a5c9-4bdb-bd46-635357cda96c",
+		"name": "backend mobile app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "live",
+			"item": [
+				{
+					"name": "alive",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-liv-2035696364.eu-central-1.elb.amazonaws.com:8080/alive",
+							"host": [
+								"connectivity-service-dev-alb-liv-2035696364",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"alive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-liv-2035696364.eu-central-1.elb.amazonaws.com:8080/products",
+							"host": [
+								"connectivity-service-dev-alb-liv-2035696364",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-liv-2035696364.eu-central-1.elb.amazonaws.com:8080/products/image/1",
+							"host": [
+								"connectivity-service-dev-alb-liv-2035696364",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"image",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "staging",
+			"item": [
+				{
+					"name": "alive",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-500377647.eu-central-1.elb.amazonaws.com:8080/alive",
+							"host": [
+								"connectivity-service-dev-alb-500377647",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"alive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-500377647.eu-central-1.elb.amazonaws.com:8080/products",
+							"host": [
+								"connectivity-service-dev-alb-500377647",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "connectivity-service-dev-alb-500377647.eu-central-1.elb.amazonaws.com:8080/products/image/1",
+							"host": [
+								"connectivity-service-dev-alb-500377647",
+								"eu-central-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"image",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

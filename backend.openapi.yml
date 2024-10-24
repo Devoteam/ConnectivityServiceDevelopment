@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: backend mobile app
+  version: 1.0.0
+servers:
+  - url: http://connectivity-service-dev-alb-liv-2035696364.eu-central-1.elb.amazonaws.com:8080
+  - url: http://connectivity-service-dev-alb-500377647.eu-central-1.elb.amazonaws.com:8080
+tags:
+  - name: staging
+  - name: live
+paths:
+  /alive:
+    get:
+      tags:
+        - staging
+        - live
+      summary: alive
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /products:
+    get:
+      tags:
+        - staging
+        - live
+      summary: products
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /products/image/1:
+    get:
+      tags:
+        - staging
+        - live
+      summary: image
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
