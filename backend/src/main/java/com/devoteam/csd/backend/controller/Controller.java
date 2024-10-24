@@ -52,7 +52,11 @@ public class Controller {
   public ResponseEntity<List<ProductEntity>> getProducts() {
     log.info("Incoming GET /products Request");
     List<ProductEntity> response = productService.getProducts();
-    log.debug("Returned product entities: {}", response.size());
+    if (response != null) {
+      log.debug("Returned product entities: {}", response.size());
+    } else {
+      log.debug("Returned product entities: null");
+    }
     log.debug("ResponseEntity is: {}", ResponseEntity.ok(response));
     return ResponseEntity.ok(response);
   }
