@@ -1,5 +1,8 @@
 {
   "appTitle": "Connect Service App",
   "errorOnLoadingProducts": "Das Laden der Produkte hat leider nicht geklappt",
-  "retry": "Wiederholen"
+  "retry": "Wiederholen",
+  "licenceEndDate": "Lizenz endet am : \n 01.01.2025",
+  "subscribe": "Abonnieren",
+  "active": "Aktiv"
 }
