@@ -410,6 +410,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  jetpack:
+    dependency: "direct main"
+    description:
+      name: jetpack
+      sha256: f0c8115f32cf15f4f2edbb9c75f43928f986119f1725e4b2b6fee5c7adfcdb3f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   js:
     dependency: transitive
     description:
