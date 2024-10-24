@@ -140,7 +140,7 @@ jobs:
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: backend-live-task-def.json
+          task-definition: ./github/workflows/backend-live-task-def.json
           service: ${{ secrets.ECS_SERVICE_LIVE }}
           cluster: ${{ secrets.ECS_CLUSTER }}
           region: ${{ secrets.AWS_REGION }}
