@@ -28,7 +28,7 @@
       "environment": [
         {
           "name": "CSD_DB_URL",
-          "value": "jdbc:mysql://database.cluster-cj484caqkjkm.eu-central-1.rds.amazonaws.com:3306/csd"
+          "value": "jdbc:mysql://database-test.cluster-cj484caqkjkm.eu-central-1.rds.amazonaws.com:3306/csd"
         }
       ],
       "environmentFiles": [],
