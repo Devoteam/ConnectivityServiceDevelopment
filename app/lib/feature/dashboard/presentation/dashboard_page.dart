@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/service_locator/injectable.dart';
+import 'cubit/dashboard_card_cubit.dart';
 import 'cubit/dashboard_cubit.dart';
 import 'cubit/dashboard_state.dart';
 import 'widget/dashboard_card.dart';
@@ -75,7 +77,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
             controller: controller,
             itemCount: dashboardEntries.length,
             itemBuilder: (_, i) {
-              return DashboardCard(dashboardEntry: dashboardEntries[i]);
+              return BlocProvider(
+                create: (BuildContext context) => getIt.get<DashboardCardCubit>(),
+                child: DashboardCard(isActive: i % 2 == 0, dashboardEntry: dashboardEntries[i]),
+              );
             },
           ),
         ),

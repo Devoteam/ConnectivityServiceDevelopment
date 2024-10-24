@@ -20,11 +20,7 @@ class DeviceSpecificUI extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return const Center(
-            child: Text(
-              "Fehler beim Erkennen des Geräts.",
-            ),
-          );
+          return mobileUi;
         } else if (snapshot.hasData && snapshot.data == true) {
           return automotiveUi;
         } else {
