@@ -38,6 +38,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Install AWS CLI (if not pre-installed)
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      # Configure AWS credentials (use secrets for security)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Get Parameters from AWS Parameter Store
+      - name: Retrieve parameters from AWS SSM
+        id: ssm-params
+        run: |
+          # Fetching the parameters from SSM
+          CSD_DB_PASSWORD=$(aws ssm get-parameter --name "db-live-password" --with-decryption --query "Parameter.Value" --output text)
+          CSD_DB_USER=$(aws ssm get-parameter --name "db-live-user" --with-decryption --query "Parameter.Value" --output text)
+          
+          # Export the parameters as environment variables
+          echo "CSD_DB_PASSWORD=$CSD_DB_PASSWORD" >> $GITHUB_ENV
+          echo "CSD_DB_USER=$CSD_DB_USER" >> $GITHUB_ENV
+          echo "CSD_DB_URL=jdbc:mysql://database-live.cluster-cj484caqkjkm.eu-central-1.rds.amazonaws.com:3306/csd" >> $GITHUB_ENV
+
       # Step 2: Set up Java
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -49,7 +76,7 @@ jobs:
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
-          path: ~/.m2/repository
+          path: ./backend
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
@@ -59,6 +86,10 @@ jobs:
         run: |
           cd ./backend
           mvn clean test
+        env:
+          CSD_DB_USER: ${{ env.CSD_DB_USER }}
+          CSD_DB_PASSWORD: ${{ env.CSD_DB_PASSWORD }}
+          CSD_DB_URL: ${{ env.CSD_DB_URL }}
 
   # 2. Run Frontend Tests
   test-mobile:
